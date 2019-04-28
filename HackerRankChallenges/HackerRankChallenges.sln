@@ -3,31 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStructures", "DataStructures", "{8F0479AA-F6A3-4262-AFE9-6DEE007BD34D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStructures", "DataStructures", "{A7109CB9-486E-40DE-8FD2-BF430B1D4BBC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arrays", "Arrays\Arrays.vcxproj", "{31ED102B-FF6A-4B59-9953-C628449CAE06}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithm", "Algorithm", "{932AD7F0-70FC-4ECB-87DA-17451187C367}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{3E0ACB0C-F068-4912-AE9F-9FC0E94B2C0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRC.Security.CSharp", "Security\HRC.Security.CSharp\HRC.Security.CSharp.csproj", "{9FC06576-9D7C-46A6-8A7C-6B69194F86B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Debug|x64.ActiveCfg = Debug|x64
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Debug|x64.Build.0 = Debug|x64
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Debug|x86.ActiveCfg = Debug|Win32
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Debug|x86.Build.0 = Debug|Win32
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Release|x64.ActiveCfg = Release|x64
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Release|x64.Build.0 = Release|x64
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Release|x86.ActiveCfg = Release|Win32
-		{31ED102B-FF6A-4B59-9953-C628449CAE06}.Release|x86.Build.0 = Release|Win32
+		{9FC06576-9D7C-46A6-8A7C-6B69194F86B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC06576-9D7C-46A6-8A7C-6B69194F86B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC06576-9D7C-46A6-8A7C-6B69194F86B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC06576-9D7C-46A6-8A7C-6B69194F86B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{31ED102B-FF6A-4B59-9953-C628449CAE06} = {8F0479AA-F6A3-4262-AFE9-6DEE007BD34D}
+		{9FC06576-9D7C-46A6-8A7C-6B69194F86B3} = {3E0ACB0C-F068-4912-AE9F-9FC0E94B2C0D}
 	EndGlobalSection
 EndGlobal

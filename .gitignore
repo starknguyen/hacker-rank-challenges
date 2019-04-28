@@ -1,3 +1,4 @@
-HackerRankChallenges/Debug/*
-HackerRankChallenges/Arrays/Debug/*
-.vs/*
+/**/Debug/
+/**/.vs/
+/**/*.db
+

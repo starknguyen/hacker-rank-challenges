@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static HRC.Code30Days.InheritanceProblem;
+using static HRC.Code30Days.Scope;
 
 namespace HRC.Code30Days
 {
@@ -15,7 +16,9 @@ namespace HRC.Code30Days
             {
                 //testBinaryNumbers();
                 //test2DArrayHourGlass();
-                testInheritance();
+                //testInheritance();
+
+                testScope();
             }
             catch (Exception ex)
             {
@@ -23,6 +26,19 @@ namespace HRC.Code30Days
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testScope()
+        {
+            Convert.ToInt32(Console.ReadLine());
+
+            int[] a = Console.ReadLine().Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
+
+            Difference d = new Difference(a);
+            d.computeDifference();
+
+            Console.Write(d.maximumDifference);
         }
 
         private static void testInheritance()

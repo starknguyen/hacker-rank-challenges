@@ -12,7 +12,9 @@ namespace HRC.DataStructures.CSharp
         {
             try
             {
-                testDynamicArray();
+                //testDynamicArray();
+
+                testArrayLeftRotation();
             }
             catch (Exception ex)
             {
@@ -22,6 +24,17 @@ namespace HRC.DataStructures.CSharp
             Console.ReadKey();
         }
 
+
+        private static void testArrayLeftRotation()
+        {
+            string[] nd = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(nd[0]);
+            int d = Convert.ToInt32(nd[1]);
+            int[] a = Array.ConvertAll(Console.ReadLine().Split(' '), aTemp => Convert.ToInt32(aTemp));
+            var lr = new LeftRotation(a, d);
+            var result = lr.Rotate();
+            result.ToList().ForEach(r => Console.Write($"[{r} "));
+        }
 
         private static int[] getInputsWithSpaceSeparated()
         {

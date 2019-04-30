@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static HRC.DataStructures.CSharp.SimpleLinkedList;
 
 namespace HRC.DataStructures.CSharp
 {
@@ -13,8 +14,8 @@ namespace HRC.DataStructures.CSharp
             try
             {
                 //testDynamicArray();
-
-                testArrayLeftRotation();
+                //testArrayLeftRotation();
+                testSimpleLinkedList();
             }
             catch (Exception ex)
             {
@@ -24,6 +25,18 @@ namespace HRC.DataStructures.CSharp
             Console.ReadKey();
         }
 
+
+        private static void testSimpleLinkedList()
+        {
+            Node head = null;
+            int T = Int32.Parse(Console.ReadLine());
+            while (T-- > 0)
+            {
+                int data = Int32.Parse(Console.ReadLine());
+                head = insert(head, data);
+            }
+            display(head);
+        }
 
         private static void testArrayLeftRotation()
         {

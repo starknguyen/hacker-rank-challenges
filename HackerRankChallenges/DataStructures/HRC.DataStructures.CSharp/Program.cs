@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,9 @@ namespace HRC.DataStructures.CSharp
             {
                 //testDynamicArray();
                 //testArrayLeftRotation();
-                testSimpleLinkedList();
+                //testSimpleLinkedList();                
+
+                testSparseArrays();
             }
             catch (Exception ex)
             {
@@ -23,6 +26,34 @@ namespace HRC.DataStructures.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testSparseArrays()
+        {
+            int stringsCount = Convert.ToInt32(Console.ReadLine());
+
+            string[] strings = new string[stringsCount];
+
+            for (int i = 0; i < stringsCount; i++)
+            {
+                string stringsItem = Console.ReadLine();
+                strings[i] = stringsItem;
+            }
+
+            int queriesCount = Convert.ToInt32(Console.ReadLine());
+
+            string[] queries = new string[queriesCount];
+
+            for (int i = 0; i < queriesCount; i++)
+            {
+                string queriesItem = Console.ReadLine();
+                queries[i] = queriesItem;
+            }
+
+            var sp = new SparseArrays();
+            int[] res = sp.MatchingStrings(strings, queries);
+            res.ToList().ForEach(r => Console.WriteLine(r));
         }
 
 

@@ -19,8 +19,10 @@ namespace HRC.Code30Days
                 //testInheritance();
                 //testClassScope();
                 //testStackQueuePalindrome();
+                //testDivisorSumInterface();
 
-                testDivisorSumInterface();
+                testBubbleSortAscending();
+
             }
             catch (Exception ex)
             {
@@ -33,8 +35,17 @@ namespace HRC.Code30Days
 
 
 
-
         #region Test Methods
+
+        private static void testBubbleSortAscending()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string[] a_temp = Console.ReadLine().Split(' ');
+            int[] a = Array.ConvertAll(a_temp, Int32.Parse);
+            SimpleBubbleSort bubbleSort = new SimpleBubbleSort();
+            bubbleSort.SortAscending(a);
+        }
+
 
         private static void testDivisorSumInterface()
         {

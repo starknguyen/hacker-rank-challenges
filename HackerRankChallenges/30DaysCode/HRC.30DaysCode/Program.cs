@@ -18,8 +18,9 @@ namespace HRC.Code30Days
                 //test2DArrayHourGlass();
                 //testInheritance();
                 //testClassScope();
+                //testStackQueuePalindrome();
 
-                testStackQueuePalindrome();
+                testDivisorSumInterface();
             }
             catch (Exception ex)
             {
@@ -28,6 +29,21 @@ namespace HRC.Code30Days
 
             Console.ReadKey();
         }
+
+
+
+
+
+        #region Test Methods
+
+        private static void testDivisorSumInterface()
+        {
+            int n = Int32.Parse(Console.ReadLine());
+            AdvancedArithmetic myCalculator = new DivisorSumInterface();
+            int sum = myCalculator.divisorSum(n);
+            Console.WriteLine("I implemented: AdvancedArithmetic\n" + sum);
+        }
+
 
         private static void testStackQueuePalindrome()
         {
@@ -70,6 +86,7 @@ namespace HRC.Code30Days
             }
         }
 
+
         private static void testClassScope()
         {
             Convert.ToInt32(Console.ReadLine());
@@ -81,6 +98,7 @@ namespace HRC.Code30Days
 
             Console.Write(d.maximumDifference);
         }
+
 
         private static void testInheritance()
         {
@@ -135,5 +153,8 @@ namespace HRC.Code30Days
             var result = bn.GetMaxNumberOfOne(input);
             Console.WriteLine(result);
         }
+
+        #endregion
+
     }
 }

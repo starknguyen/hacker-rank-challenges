@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryNumbers.cs" />
+    <Compile Include="DivisorSumInterface.cs" />
     <Compile Include="InheritanceProblem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

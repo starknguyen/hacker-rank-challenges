@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ext = HRC.Security.CSharp.ExenstionMethods;
+
 namespace HRC.Security.CSharp
 {
     class Program
@@ -12,10 +14,9 @@ namespace HRC.Security.CSharp
         {
             try
             {
-                int[] inputs = getInputsWithSpaceSeparated();
+                //testInverseFunction();
 
-                InverseFunction iv = new InverseFunction();
-                var inversed = iv.GetInverseFunctionValues(inputs);
+                testSecurityPermutations();
             }
             catch (Exception ex)
             {
@@ -26,13 +27,22 @@ namespace HRC.Security.CSharp
         }
 
 
-        private static int[] getInputsWithSpaceSeparated()
+        private static void testSecurityPermutations()
         {
-            int n = Convert.ToInt32(Console.ReadLine());
-            int[] inputs = Console.ReadLine().Split(' ')
-                                             .Select(s => Convert.ToInt32(s))
-                                             .ToArray();
-            return inputs;
+            int[] inputs = ext.GetInputsWithSpaceSeparated();
+            var sp = new SecurityPermutations();
+            var retval = sp.GetPermutationValues(inputs);
+            retval.ToList().ForEach(v => Console.WriteLine($"{v} "));
         }
+
+
+        private static void testInverseFunction()
+        {
+            int[] inputs = ext.GetInputsWithSpaceSeparated();
+
+            InverseFunction iv = new InverseFunction();
+            var inversed = iv.GetInverseFunctionValues(inputs);
+        }
+
     }
 }

@@ -17,8 +17,9 @@ namespace HRC.Code30Days
                 //testBinaryNumbers();
                 //test2DArrayHourGlass();
                 //testInheritance();
+                //testClassScope();
 
-                testScope();
+                testStackQueuePalindrome();
             }
             catch (Exception ex)
             {
@@ -28,8 +29,48 @@ namespace HRC.Code30Days
             Console.ReadKey();
         }
 
+        private static void testStackQueuePalindrome()
+        {
+            // read the string s.
+            string s = Console.ReadLine();
 
-        private static void testScope()
+            // create the Solution class object p.
+            StackQueuePalindrome obj = new StackQueuePalindrome();
+
+            // push/enqueue all the characters of string s to stack.
+            foreach (char c in s)
+            {
+                obj.pushCharacter(c);
+                obj.enqueueCharacter(c);
+            }
+
+            bool isPalindrome = true;
+
+            // pop the top character from stack.
+            // dequeue the first character from queue.
+            // compare both the characters.
+            for (int i = 0; i < s.Length / 2; i++)
+            {
+                if (obj.popCharacter() != obj.dequeueCharacter())
+                {
+                    isPalindrome = false;
+
+                    break;
+                }
+            }
+
+            // finally print whether string s is palindrome or not.
+            if (isPalindrome)
+            {
+                Console.Write("The word, {0}, is a palindrome.", s);
+            }
+            else
+            {
+                Console.Write("The word, {0}, is not a palindrome.", s);
+            }
+        }
+
+        private static void testClassScope()
         {
             Convert.ToInt32(Console.ReadLine());
 

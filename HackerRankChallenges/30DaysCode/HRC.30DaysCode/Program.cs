@@ -20,9 +20,9 @@ namespace HRC.Code30Days
                 //testClassScope();
                 //testStackQueuePalindrome();
                 //testDivisorSumInterface();
+                //testBubbleSortAscending();
 
-                testBubbleSortAscending();
-
+                testPrintArrayGeneric();
             }
             catch (Exception ex)
             {
@@ -33,9 +33,37 @@ namespace HRC.Code30Days
         }
 
 
-
-
         #region Test Methods
+
+        private static void testPrintArrayGeneric()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] intArray = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                intArray[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            n = Convert.ToInt32(Console.ReadLine());
+            string[] stringArray = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                stringArray[i] = Console.ReadLine();
+            }
+
+            PrintArray<Int32>(intArray);
+            PrintArray<String>(stringArray);
+        }
+
+
+        private static void PrintArray<T>(T[] array)
+        {
+            foreach (var item in array)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
 
         private static void testBubbleSortAscending()
         {

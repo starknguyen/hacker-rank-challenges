@@ -23,8 +23,9 @@ namespace HRC.Code30Days
                 //testDivisorSumInterface();
                 //testBubbleSortAscending();
                 //testPrintArrayGeneric();
+                //testBinarySearchTreeHeight();
 
-                testBinarySearchTreeHeight();
+                testBinarySearchTreeLevelOrderTraversal();
             }
             catch (Exception ex)
             {
@@ -37,18 +38,36 @@ namespace HRC.Code30Days
 
         #region Test Methods
 
+        private static void testBinarySearchTreeLevelOrderTraversal()
+        {
+            BinarySearchTree bst;
+            BSTNode root;
+            initializeBST(out bst, out root);
+
+            bst.GetLevelOrderTraversal(root);
+        }
+
+
         private static void testBinarySearchTreeHeight()
         {
-            var bst = new BinarySearchTree();
-            BSTNode root = null;
+            BinarySearchTree bst;
+            BSTNode root;
+            initializeBST(out bst, out root);
+            int height = bst.GetHeight(root);
+            Console.WriteLine(height);
+        }
+
+
+        private static void initializeBST(out BinarySearchTree bst, out BSTNode root)
+        {
+            bst = new BinarySearchTree();
+            root = null;
             int T = Int32.Parse(Console.ReadLine());
             while (T-- > 0)
             {
                 int data = Int32.Parse(Console.ReadLine());
                 root = bst.Insert(root, data);
             }
-            int height = bst.GetHeight(root);
-            Console.WriteLine(height);
         }
 
 

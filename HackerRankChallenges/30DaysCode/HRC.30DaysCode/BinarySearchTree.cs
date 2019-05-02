@@ -38,6 +38,28 @@ namespace HRC.Code30Days
         }
 
 
+        public void GetLevelOrderTraversal(BSTNode root)
+        {
+            Queue<BSTNode> lvlOrderQueue = new Queue<BSTNode>();
+            lvlOrderQueue.Enqueue(root);
+
+            while (true)
+            {
+                if (lvlOrderQueue.Count == 0)
+                    return;
+                else
+                {
+                    BSTNode current = lvlOrderQueue.Dequeue();
+                    Console.Write(current.data + " ");
+                    if (current.left != null)
+                        lvlOrderQueue.Enqueue(current.left);
+                    if (current.right != null)
+                        lvlOrderQueue.Enqueue(current.right);
+                }
+            }
+        }
+
+
         public BSTNode Insert(BSTNode root, int data)
         {
             if (root == null)

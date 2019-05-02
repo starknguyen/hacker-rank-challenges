@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static HRC.Code30Days.BinarySearchTree;
 using static HRC.Code30Days.InheritanceProblem;
 using static HRC.Code30Days.Scope;
 
@@ -21,8 +22,9 @@ namespace HRC.Code30Days
                 //testStackQueuePalindrome();
                 //testDivisorSumInterface();
                 //testBubbleSortAscending();
+                //testPrintArrayGeneric();
 
-                testPrintArrayGeneric();
+                testBinarySearchTreeHeight();
             }
             catch (Exception ex)
             {
@@ -34,6 +36,21 @@ namespace HRC.Code30Days
 
 
         #region Test Methods
+
+        private static void testBinarySearchTreeHeight()
+        {
+            var bst = new BinarySearchTree();
+            BSTNode root = null;
+            int T = Int32.Parse(Console.ReadLine());
+            while (T-- > 0)
+            {
+                int data = Int32.Parse(Console.ReadLine());
+                root = bst.Insert(root, data);
+            }
+            int height = bst.GetHeight(root);
+            Console.WriteLine(height);
+        }
+
 
         private static void testPrintArrayGeneric()
         {

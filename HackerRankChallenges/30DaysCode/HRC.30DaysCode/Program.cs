@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static HRC.Code30Days.BinarySearchTree;
 using static HRC.Code30Days.InheritanceProblem;
+using static HRC.Code30Days.LinkedListDuplicate;
 using static HRC.Code30Days.Scope;
 
 namespace HRC.Code30Days
@@ -24,8 +25,9 @@ namespace HRC.Code30Days
                 //testBubbleSortAscending();
                 //testPrintArrayGeneric();
                 //testBinarySearchTreeHeight();
+                //testBinarySearchTreeLevelOrderTraversal();
 
-                testBinarySearchTreeLevelOrderTraversal();
+                testLinkedListRemoveDuplicate();
             }
             catch (Exception ex)
             {
@@ -37,6 +39,20 @@ namespace HRC.Code30Days
 
 
         #region Test Methods
+
+        private static void testLinkedListRemoveDuplicate()
+        {
+            Node head = null;
+            int T = Int32.Parse(Console.ReadLine());
+            while (T-- > 0)
+            {
+                int data = Int32.Parse(Console.ReadLine());
+                head = insert(head, data);
+            }
+            head = removeDuplicates(head);
+            display(head);
+        }
+
 
         private static void testBinarySearchTreeLevelOrderTraversal()
         {

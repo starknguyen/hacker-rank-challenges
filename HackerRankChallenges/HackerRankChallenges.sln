@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contests", "Contests", "{20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRC.Contests.CSharp", "Contests\HRC.Contests.CSharp\HRC.Contests.CSharp.csproj", "{A98BBF39-615A-43E3-88C2-4975935A84C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterviewKit", "InterviewKit", "{25A01CBF-AFC6-4A5F-8F35-6C453BD3E8A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRC.InterviewKit.CSharp", "InterviewKit\HRC.InterviewKit.CSharp\HRC.InterviewKit.CSharp.csproj", "{FA6F32BD-BAF0-407A-9F1F-52F00C02E4B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{A98BBF39-615A-43E3-88C2-4975935A84C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98BBF39-615A-43E3-88C2-4975935A84C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98BBF39-615A-43E3-88C2-4975935A84C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA6F32BD-BAF0-407A-9F1F-52F00C02E4B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA6F32BD-BAF0-407A-9F1F-52F00C02E4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA6F32BD-BAF0-407A-9F1F-52F00C02E4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA6F32BD-BAF0-407A-9F1F-52F00C02E4B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +67,6 @@ Global
 		{C7EADAE3-05C1-4EDE-B943-1DCAC8821F2C} = {A7109CB9-486E-40DE-8FD2-BF430B1D4BBC}
 		{1CBC5649-C97E-46CF-83A8-DD0BFB24776E} = {FC3595F0-8D04-4ECE-BF13-651B137B82D6}
 		{A98BBF39-615A-43E3-88C2-4975935A84C2} = {206F8546-B3B2-4589-B8A0-29D2EEE236C7}
+		{FA6F32BD-BAF0-407A-9F1F-52F00C02E4B0} = {25A01CBF-AFC6-4A5F-8F35-6C453BD3E8A1}
 	EndGlobalSection
 EndGlobal

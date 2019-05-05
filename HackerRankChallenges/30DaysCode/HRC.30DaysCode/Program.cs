@@ -26,8 +26,9 @@ namespace HRC.Code30Days
                 //testPrintArrayGeneric();
                 //testBinarySearchTreeHeight();
                 //testBinarySearchTreeLevelOrderTraversal();
+                //testLinkedListRemoveDuplicate();
 
-                testLinkedListRemoveDuplicate();
+                testPrimalityCheck();
             }
             catch (Exception ex)
             {
@@ -39,6 +40,27 @@ namespace HRC.Code30Days
 
 
         #region Test Methods
+
+        private static void testPrimalityCheck()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] inputArr = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                inputArr[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            var primalityCheck = new PrimeOptimization();
+            for (int i = 0; i < n; i++)
+            {
+                bool isPrime = primalityCheck.IsPrime(inputArr[i]);
+                if (isPrime)
+                    Console.WriteLine("Prime");
+                else
+                    Console.WriteLine("Not prime");
+            }
+        }
+
 
         private static void testLinkedListRemoveDuplicate()
         {

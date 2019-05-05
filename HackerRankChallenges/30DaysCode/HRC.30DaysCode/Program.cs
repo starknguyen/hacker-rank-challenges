@@ -44,21 +44,22 @@ namespace HRC.Code30Days
         private static void testPrimalityCheck()
         {
             int n = Convert.ToInt32(Console.ReadLine());
-            int[] inputArr = new int[n];
+            uint[] inputArr = new uint[n];
             for (int i = 0; i < n; i++)
             {
-                inputArr[i] = Convert.ToInt32(Console.ReadLine());
+                inputArr[i] = Convert.ToUInt32(Console.ReadLine());
             }
 
             var primalityCheck = new PrimeOptimization();
             for (int i = 0; i < n; i++)
             {
-                bool isPrime = primalityCheck.IsPrime(inputArr[i]);
+                bool isPrime = primalityCheck.IsPrimeOptimize1(inputArr[i]);
+                Console.WriteLine($"Check {inputArr[i]} primality in {primalityCheck.BenchMarkCount} steps");
                 if (isPrime)
                     Console.WriteLine("Prime");
                 else
                     Console.WriteLine("Not prime");
-            }
+            }            
         }
 
 

@@ -27,8 +27,9 @@ namespace HRC.Code30Days
                 //testBinarySearchTreeHeight();
                 //testBinarySearchTreeLevelOrderTraversal();
                 //testLinkedListRemoveDuplicate();
+                //testPrimalityCheck();
 
-                testPrimalityCheck();
+                testNestedLogic();
             }
             catch (Exception ex)
             {
@@ -40,6 +41,21 @@ namespace HRC.Code30Days
 
 
         #region Test Methods
+
+        private static void testNestedLogic()
+        {
+            string recvDateStr = Console.ReadLine();
+            var recvDateArr = recvDateStr.Split(' ').Select(s => Convert.ToInt32(s)).ToArray();
+            DateTime recvDate = new DateTime(recvDateArr[2], recvDateArr[1], recvDateArr[0]);
+
+            string dueDateStr = Console.ReadLine();
+            var dueDateArr = dueDateStr.Split(' ').Select(s => Convert.ToInt32(s)).ToArray();
+            DateTime dueDate = new DateTime(dueDateArr[2], dueDateArr[1], dueDateArr[0]);
+
+            var nl = new NestedLogic();
+            Console.WriteLine(nl.CalculateFine(dueDate, recvDate));
+        }
+
 
         private static void testPrimalityCheck()
         {

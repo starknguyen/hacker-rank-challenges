@@ -47,6 +47,7 @@
     <Compile Include="DivisorSumInterface.cs" />
     <Compile Include="InheritanceProblem.cs" />
     <Compile Include="LinkedListDuplicate.cs" />
+    <Compile Include="NestedLogic.cs" />
     <Compile Include="PrimeOptimization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

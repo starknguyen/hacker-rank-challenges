@@ -12,10 +12,9 @@ namespace HRC.Algorithm.CSharp
         {
             try
             {
-                var inputArr = getInputsWithSpaceSeparated();
+                //testMiniMaxSum();
 
-                MiniMaxSum mms = new MiniMaxSum();
-                mms.PrintResult(inputArr);
+                testTimeConversion();
             }
             catch (Exception ex)
             {
@@ -25,6 +24,52 @@ namespace HRC.Algorithm.CSharp
             Console.ReadKey();
         }
 
+        private static void testTimeConversion()
+        {
+            string s = Console.ReadLine();
+            string result = timeConversion(s);
+            Console.WriteLine(result);
+        }
+
+
+        /*
+        * Complete the timeConversion function below.
+        */
+        static string timeConversion(string s)
+        {
+            /*
+             * Write your code here.
+             */
+            string retval = String.Empty;
+            var timeSplit = s.Substring(0, s.Length - 2).Split(':').ToList().Select(st => st.ToString()).ToList();
+            int hour = Convert.ToInt32(timeSplit[0]);
+            string min = timeSplit[1];
+            string sec = timeSplit[2];
+
+            if (s.EndsWith("PM"))
+            {
+                if (hour >= 12)
+                    return s.Substring(0, s.Length - 2);
+                else
+                    return $"{12 + hour}:{min}:{sec}";
+            }
+            else
+            {
+                if (hour == 12)
+                    return $"{12 - hour:00}:{min}:{sec}";
+                else
+                    return s.Substring(0, s.Length - 2);
+            }
+        }
+
+
+        private static void testMiniMaxSum()
+        {
+            var inputArr = getInputsWithSpaceSeparated();
+
+            MiniMaxSum mms = new MiniMaxSum();
+            mms.PrintResult(inputArr);
+        }
 
         private static int[] getInputsWithSpaceSeparated()
         {

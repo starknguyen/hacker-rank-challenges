@@ -28,8 +28,9 @@ namespace HRC.Code30Days
                 //testBinarySearchTreeLevelOrderTraversal();
                 //testLinkedListRemoveDuplicate();
                 //testPrimalityCheck();
+                //testNestedLogic();
 
-                testNestedLogic();
+                testVerySimpleLinqRegex();
             }
             catch (Exception ex)
             {
@@ -41,6 +42,27 @@ namespace HRC.Code30Days
 
 
         #region Test Methods
+
+        private static void testVerySimpleLinqRegex()
+        {
+            int N = Convert.ToInt32(Console.ReadLine());
+            List<string> firstNames = new List<string>();
+
+            for (int NItr = 0; NItr < N; NItr++)
+            {
+                string[] firstNameEmailID = Console.ReadLine().Split(' ');
+
+                string firstName = firstNameEmailID[0];
+                string emailID = firstNameEmailID[1];
+                if (!emailID.EndsWith("@gmail.com"))
+                    continue;
+                firstNames.Add(firstName);
+            }
+
+            firstNames.Sort();
+            firstNames.ForEach(fn => Console.WriteLine(fn));
+        }
+
 
         private static void testNestedLogic()
         {

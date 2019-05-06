@@ -29,8 +29,9 @@ namespace HRC.Code30Days
                 //testLinkedListRemoveDuplicate();
                 //testPrimalityCheck();
                 //testNestedLogic();
+                //testVerySimpleLinqRegex();
 
-                testVerySimpleLinqRegex();
+                testMaxBitwiseWithBoundary();
             }
             catch (Exception ex)
             {
@@ -40,8 +41,35 @@ namespace HRC.Code30Days
             Console.ReadKey();
         }
 
-
+    
         #region Test Methods
+
+        private static void testMaxBitwiseWithBoundary()
+        {
+            int t = Convert.ToInt32(Console.ReadLine());
+            List<int> maxValues = new List<int>(t);
+            for (int tItr = 0; tItr < t; tItr++)
+            {
+                string[] nk = Console.ReadLine().Split(' ');
+                int n = Convert.ToInt32(nk[0]);
+                int k = Convert.ToInt32(nk[1]);
+
+                int max = 0;
+                for (int i = 1; i <= n; i++)
+                {
+                    for (int j = i + 1; j <= n; j++)
+                    {
+                        if ((i & j) >= k)
+                            continue;
+                        max = (max < (i & j)) ? (i & j) : max;
+                    }
+                }
+                maxValues.Add(max);
+            }
+
+            maxValues.ForEach(mv => Console.WriteLine(mv));
+        }
+
 
         private static void testVerySimpleLinqRegex()
         {

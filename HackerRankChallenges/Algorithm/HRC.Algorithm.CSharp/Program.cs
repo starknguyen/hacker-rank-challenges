@@ -14,8 +14,9 @@ namespace HRC.Algorithm.CSharp
             {
                 //testMiniMaxSum();
                 //testTimeConversion();
+                //testKangarooProblem();
 
-                testKangarooProblem();
+                testBetweenSetsProblem();
             }
             catch (Exception ex)
             {
@@ -24,6 +25,91 @@ namespace HRC.Algorithm.CSharp
 
             Console.ReadKey();
         }
+
+        private static void testBetweenSetsProblem()
+        {
+            string[] nm = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(nm[0]);
+            int m = Convert.ToInt32(nm[1]);
+            int[] a = Array.ConvertAll(Console.ReadLine().Split(' '), aTemp => Convert.ToInt32(aTemp));
+            int[] b = Array.ConvertAll(Console.ReadLine().Split(' '), bTemp => Convert.ToInt32(bTemp));
+
+            int total = getTotalX(a, b);
+            Console.WriteLine(total);
+        }
+
+
+        /*
+        * Complete the getTotalX function below.
+        */
+        static int getTotalX(int[] a, int[] b)
+        {
+            /*
+             * Write your code here.
+             */
+            // Make sure that both array were sorted
+            var aList = a.ToList();
+            aList.Sort();
+            var bList = b.ToList();
+            bList.Sort();
+
+            // (product of all ai) <= m <= b1
+            int retval = 0;
+            List<int> factorB = new List<int>();
+
+            int aLCM = LCM(a);
+            List<int> availableValues = new List<int>();
+            for (int i = aLCM; i <= bList.First();/*; i += aLCM*/)
+            {
+                availableValues.Add(i);
+                int incr = i + aLCM;
+                if (incr > bList.First())
+                    break;
+                i = incr;
+            }
+
+            for (int i = 0; i < availableValues.Count(); i++)
+            {
+                bool take = false;
+                for (int k = 0; k < b.Length; k++)
+                {
+                    if (b[k] % availableValues[i] == 0)
+                        take = true;
+                    else
+                    {
+                        take = false;
+                        break; // we don't have to care anymore
+                    }
+                }
+                if (take)
+                    factorB.Add(availableValues[i]);
+            }
+
+            retval = factorB.Distinct().Count();
+
+            return retval;
+        }
+
+        static int GCD(int[] numbers)
+        {
+            return numbers.Aggregate(GCD);
+        }
+
+        static int GCD(int a, int b)
+        {
+            return b == 0 ? a : GCD(b, a % b);
+        }
+
+        static int LCM(int[] numbers)
+        {
+            return numbers.Aggregate(lcm);
+        }
+        static int lcm(int a, int b)
+        {
+            return Math.Abs(a * b) / GCD(a, b);
+        }
+
+
 
         private static void testKangarooProblem()
         {
@@ -41,7 +127,7 @@ namespace HRC.Algorithm.CSharp
         // Complete the kangaroo function below.
         static string kangaroo(int x1, int v1, int x2, int v2)
         { 
-            // N is positive, (x2 - x1) is positive hence (v1 - v2) MUSE BE POSITIVE
+            // N is positive, (x2 - x1) is positive hence (v1 - v2) MUST BE POSITIVE
             if (v1 <= v2)
                 return "NO";
 
@@ -53,7 +139,6 @@ namespace HRC.Algorithm.CSharp
             else
                 return "NO";
         }
-
 
 
         private static void testTimeConversion()

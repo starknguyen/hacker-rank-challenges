@@ -13,8 +13,9 @@ namespace HRC.Algorithm.CSharp
             try
             {
                 //testMiniMaxSum();
+                //testTimeConversion();
 
-                testTimeConversion();
+                testKangarooProblem();
             }
             catch (Exception ex)
             {
@@ -23,6 +24,37 @@ namespace HRC.Algorithm.CSharp
 
             Console.ReadKey();
         }
+
+        private static void testKangarooProblem()
+        {
+            string[] x1V1X2V2 = Console.ReadLine().Split(' ');
+            int x1 = Convert.ToInt32(x1V1X2V2[0]);
+            int v1 = Convert.ToInt32(x1V1X2V2[1]);
+            int x2 = Convert.ToInt32(x1V1X2V2[2]);
+            int v2 = Convert.ToInt32(x1V1X2V2[3]);
+            string result = kangaroo(x1, v1, x2, v2);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the kangaroo function below.
+        static string kangaroo(int x1, int v1, int x2, int v2)
+        { 
+            // N is positive, (x2 - x1) is positive hence (v1 - v2) MUSE BE POSITIVE
+            if (v1 <= v2)
+                return "NO";
+
+            // Solve this simple equation:
+            // x1 + Nv1 = x2 + Nv2
+            // where N is number of steps, N MUST BE AN INTEGER
+            if ((x2 - x1) / (v1 - v2) > 0 && (x2 - x1) % (v1 - v2) == 0)
+                return "YES";
+            else
+                return "NO";
+        }
+
+
 
         private static void testTimeConversion()
         {

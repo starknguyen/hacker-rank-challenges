@@ -15,8 +15,10 @@ namespace HRC.Algorithm.CSharp
                 //testMiniMaxSum();
                 //testTimeConversion();
                 //testKangarooProblem();
+                //testBetweenSetsProblem();
 
-                testBetweenSetsProblem();
+                testAppleOrangesProblem();
+
             }
             catch (Exception ex)
             {
@@ -25,6 +27,49 @@ namespace HRC.Algorithm.CSharp
 
             Console.ReadKey();
         }
+
+
+        private static void testAppleOrangesProblem()
+        {
+            string[] st = Console.ReadLine().Split(' ');
+            int s = Convert.ToInt32(st[0]);
+            int t = Convert.ToInt32(st[1]);
+
+            string[] ab = Console.ReadLine().Split(' ');
+            int a = Convert.ToInt32(ab[0]);
+            int b = Convert.ToInt32(ab[1]);
+
+            string[] mn = Console.ReadLine().Split(' ');
+            int m = Convert.ToInt32(mn[0]);
+            int n = Convert.ToInt32(mn[1]);
+
+            int[] apples = Array.ConvertAll(Console.ReadLine().Split(' '), applesTemp => Convert.ToInt32(applesTemp));
+            int[] oranges = Array.ConvertAll(Console.ReadLine().Split(' '), orangesTemp => Convert.ToInt32(orangesTemp));
+            countApplesAndOranges(s, t, a, b, apples, oranges);
+        }
+
+
+        // Complete the countApplesAndOranges function below.
+        static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges)
+        {
+            List<int> applesFinalDistances = new List<int>();
+            List<int> orangesFinalDistances = new List<int>();
+
+            for (int i = 0; i < apples.Length; i++)
+            {
+                applesFinalDistances.Add(apples[i] + a);
+            }
+
+            for (int i = 0; i < oranges.Length; i++)
+            {
+                orangesFinalDistances.Add(oranges[i] + b);
+            }
+
+            int nAppleInHouse = applesFinalDistances.Where(d => d >= s && d <= t).Count();
+            Console.WriteLine(nAppleInHouse);
+            int nOrangeInHouse = orangesFinalDistances.Where(d => d >= s && d <= t).Count(); Console.WriteLine(nOrangeInHouse);
+        }
+
 
         private static void testBetweenSetsProblem()
         {

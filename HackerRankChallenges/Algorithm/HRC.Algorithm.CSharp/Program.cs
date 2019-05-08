@@ -16,9 +16,9 @@ namespace HRC.Algorithm.CSharp
                 //testTimeConversion();
                 //testKangarooProblem();
                 //testBetweenSetsProblem();
+                //testAppleOrangesProblem();
 
-                testAppleOrangesProblem();
-
+                testBirthdayBarProblem();
             }
             catch (Exception ex)
             {
@@ -27,6 +27,63 @@ namespace HRC.Algorithm.CSharp
 
             Console.ReadKey();
         }
+
+
+        private static void testBirthdayBarProblem()
+        {
+            int n = Convert.ToInt32(Console.ReadLine().Trim());
+            List<int> s = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(sTemp => Convert.ToInt32(sTemp)).ToList();
+            string[] dm = Console.ReadLine().TrimEnd().Split(' ');
+            int d = Convert.ToInt32(dm[0]);
+            int m = Convert.ToInt32(dm[1]);
+            int result = birthday(s, d, m);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the birthday function below.
+        static int birthday(List<int> s, int d, int m)
+        {
+            if (m == 1 && s.First() != d)
+                return 0;
+            bool isSameValuesAll = !s.Any(si => si != s[0]);
+            int a = 31 / s.First();
+            if (isSameValuesAll && a < m)
+                return 0;
+
+            int solutionCount = 0;
+            int tempSum = 0;
+            int shiftCount = 0;
+            for (int i = 0; i < s.Count(); i++)
+            {               
+                if (i == 0)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        tempSum += s[j];
+                    }
+                }
+                else
+                {
+                    shiftCount++;
+                    int idx = i + m - 1;
+                    if (idx >= s.Count())
+                        return solutionCount;
+                    tempSum += s[idx];
+                }
+
+                if (tempSum == d)
+                {
+                    solutionCount++;
+                }
+                // Remove first element in the whole slice before shifting
+                tempSum -= s[shiftCount];
+            }
+
+            return solutionCount;
+        }
+
 
 
         private static void testAppleOrangesProblem()

@@ -17,8 +17,9 @@ namespace HRC.Algorithm.CSharp
                 //testKangarooProblem();
                 //testBetweenSetsProblem();
                 //testAppleOrangesProblem();
+                //testBirthdayBarProblem();
 
-                testBirthdayBarProblem();
+                testRussianCalendar();
             }
             catch (Exception ex)
             {
@@ -26,6 +27,48 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testRussianCalendar()
+        {
+            int year = Convert.ToInt32(Console.ReadLine().Trim());
+            string result = dayOfProgrammer(year);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the dayOfProgrammer function below.
+        static string dayOfProgrammer(int year)
+        {
+            int febDays = 28;
+            if (year >= 1700 && year <= 1917)
+            {
+                // Julian calendar
+                if (year % 4 == 0)
+                {
+                    febDays = 29;
+                }
+            }
+            else if (year == 1918)
+            {
+                return "26.09.1918";
+            }
+            else
+            {
+                // After 1918, Gregorian calendar
+                if (year % 400 == 0 ||
+                    year % 4 == 0 && year % 100 != 0)
+                {
+                    febDays = 29;
+                }
+            }
+
+            int totalDaysBeforeOctober = 31 * 5 + 30 * 3 + febDays;
+            int dayProg = 30 - (totalDaysBeforeOctober - 256);
+
+            return $"{dayProg:D2}.09.{year}";
         }
 
 

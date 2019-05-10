@@ -18,8 +18,9 @@ namespace HRC.Algorithm.CSharp
                 //testBetweenSetsProblem();
                 //testAppleOrangesProblem();
                 //testBirthdayBarProblem();
+                //testRussianCalendar();
 
-                testRussianCalendar();
+                testBonAppetitProblem();
             }
             catch (Exception ex)
             {
@@ -27,6 +28,38 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testBonAppetitProblem()
+        {
+            string[] nk = Console.ReadLine().TrimEnd().Split(' ');
+            int n = Convert.ToInt32(nk[0]);
+            int k = Convert.ToInt32(nk[1]);
+            List<int> bill = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(billTemp => Convert.ToInt32(billTemp)).ToList();
+            int b = Convert.ToInt32(Console.ReadLine().Trim());
+
+            bonAppetit(bill, k, b);
+        }
+
+
+        // Complete the bonAppetit function below.
+        static void bonAppetit(List<int> bill, int k, int b)
+        {
+            int expectedSum = 0;
+            for (int i = 0; i < bill.Count(); i++)
+            {
+                if (i == k)
+                    continue;
+                expectedSum += bill[i];
+            }
+
+            expectedSum /= 2;
+
+            if (expectedSum == b)
+                Console.WriteLine("Bon Appetit");
+            else
+                Console.WriteLine(b - expectedSum);
         }
 
 

@@ -19,8 +19,9 @@ namespace HRC.Algorithm.CSharp
                 //testAppleOrangesProblem();
                 //testBirthdayBarProblem();
                 //testRussianCalendar();
+                //testBonAppetitProblem();
 
-                testBonAppetitProblem();
+                testBreakingRecordsProblem();
             }
             catch (Exception ex)
             {
@@ -28,6 +29,43 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testBreakingRecordsProblem()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] scores = Array.ConvertAll(Console.ReadLine().Split(' '), scoresTemp => Convert.ToInt32(scoresTemp));
+            int[] result = breakingRecords(scores);
+
+            Console.WriteLine(string.Join(" ", result));
+        }
+
+
+        // Complete the breakingRecords function below.
+        static int[] breakingRecords(int[] scores)
+        {
+            int breakHighCount = 0;
+            int breakLowCount = 0;
+            int tempHigh = scores[0], tempLow = scores[0];
+
+            for (int i = 0; i < scores.Length; i++)
+            {
+                if (scores[i] > tempHigh)
+                {
+                    tempHigh = scores[i];
+                    breakHighCount++;
+                    continue;
+                }
+                if (scores[i] < tempLow)
+                {
+                    tempLow = scores[i];
+                    breakLowCount++;
+                    continue;
+                }
+            }
+
+            return new int[] { breakHighCount, breakLowCount };
         }
 
 

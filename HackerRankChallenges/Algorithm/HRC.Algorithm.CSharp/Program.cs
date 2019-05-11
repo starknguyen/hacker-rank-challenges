@@ -20,8 +20,9 @@ namespace HRC.Algorithm.CSharp
                 //testBirthdayBarProblem();
                 //testRussianCalendar();
                 //testBonAppetitProblem();
+                //testBreakingRecordsProblem();
 
-                testBreakingRecordsProblem();
+                testPickingNumbersProblem();
             }
             catch (Exception ex)
             {
@@ -29,6 +30,37 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testPickingNumbersProblem()
+        {
+            int n = Convert.ToInt32(Console.ReadLine().Trim());
+            List<int> a = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(aTemp => Convert.ToInt32(aTemp)).ToList();
+
+            int result = pickingNumbers(a);
+
+            Console.WriteLine(result);
+        }
+
+
+        static int pickingNumbers(List<int> a)
+        {
+            int higher1 = 0, lower1 = 0;
+            List<int> retval = new List<int>();
+
+            for (int i = 0; i < a.Count(); i++)
+            {
+                lower1 = Math.Abs(1 - a[i]);
+                higher1 = 1 + a[i];
+                var findLower1 = a.Where(ai => ai == lower1).Count() + 1; // + lower
+                var findHigher1 = a.Where(ai => ai == higher1).Count() + 1; // + higher
+                var equalValues = a.Where(ai => ai == a[i]).Count() - 1;
+                int tempMax = (findLower1 > findHigher1) ? findLower1 : findHigher1;
+                retval.Add(tempMax + equalValues);
+            }
+
+            return retval.Max();
         }
 
 

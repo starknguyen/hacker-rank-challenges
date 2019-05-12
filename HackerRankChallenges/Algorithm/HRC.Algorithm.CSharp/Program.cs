@@ -22,8 +22,9 @@ namespace HRC.Algorithm.CSharp
                 //testBonAppetitProblem();
                 //testBreakingRecordsProblem();
                 //testPickingNumbersProblem();
+                //testDivisibleSumPairs();
 
-                testDivisibleSumPairs();
+                testBeautifulTriplets();
             }
             catch (Exception ex)
             {
@@ -31,6 +32,50 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testBeautifulTriplets()
+        {
+            string[] nd = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(nd[0]);
+            int d = Convert.ToInt32(nd[1]);
+            int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp));
+            int result = beautifulTriplets(d, arr);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the beautifulTriplets function below.
+        static int beautifulTriplets(int d, int[] arr)
+        {
+            int count = 0;
+            List<int> arrList = arr.ToList();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int findNum = arr[i] + d;    
+                if (arr.Contains(findNum))
+                {
+                    int prevIdx = i;
+                    int idx = arrList.IndexOf(findNum);
+                    if (idx > prevIdx)
+                    {
+                        findNum = findNum + d;
+                        if (arr.Contains(findNum))
+                        {
+                            prevIdx = idx;
+                            idx = arrList.IndexOf(findNum);
+                            if (idx > prevIdx)
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                }            
+            }
+
+            return count;
         }
 
 

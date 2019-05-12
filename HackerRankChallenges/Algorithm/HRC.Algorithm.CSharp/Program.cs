@@ -52,28 +52,27 @@ namespace HRC.Algorithm.CSharp
         {
             int count = 0;
             List<int> arrList = arr.ToList();
+            bool isTake = true;
             for (int i = 0; i < arr.Length; i++)
             {
-                int findNum = arr[i] + d;    
-                if (arr.Contains(findNum))
+                int prevIdx = i;
+                int currIdx = i;
+                int findNum = 0;
+                while ((findNum = arr[currIdx] + d) <= (arr[i] + 2 * d))
                 {
-                    int prevIdx = i;
-                    int idx = arrList.IndexOf(findNum);
-                    if (idx > prevIdx)
+                    currIdx = arrList.IndexOf(findNum);
+                    if (currIdx < prevIdx)
                     {
-                        findNum = findNum + d;
-                        if (arr.Contains(findNum))
-                        {
-                            prevIdx = idx;
-                            idx = arrList.IndexOf(findNum);
-                            if (idx > prevIdx)
-                            {
-                                count++;
-                            }
-                        }
+                        isTake = false;
+                        break;
                     }
-                }            
-            }
+                    prevIdx = currIdx;
+                    isTake = true;
+                }
+
+                if (isTake)
+                    count++;
+            }                   
 
             return count;
         }

@@ -23,8 +23,9 @@ namespace HRC.Algorithm.CSharp
                 //testBreakingRecordsProblem();
                 //testPickingNumbersProblem();
                 //testDivisibleSumPairs();
+                //testBeautifulTriplets();
 
-                testBeautifulTriplets();
+                testSimpleDesignPdfViewer();
             }
             catch (Exception ex)
             {
@@ -32,6 +33,38 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testSimpleDesignPdfViewer()
+        {
+            int[] h = Array.ConvertAll(Console.ReadLine().Split(' '), hTemp => Convert.ToInt32(hTemp));
+            string word = Console.ReadLine();
+
+            int result = designerPdfViewer(h, word);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the designerPdfViewer function below.
+        static int designerPdfViewer(int[] h, string word)
+        {
+            char[] alpha = "abcdefghijklmnopqrstuvwxyz".ToCharArray();            
+            Dictionary<char, int> chHeightMap = new Dictionary<char, int>();
+            for (int i = 0; i < h.Length; i++)
+            {
+                chHeightMap.Add(alpha[i], h[i]);
+            }
+
+            int maxHeight = 0;
+            foreach (char c in word)
+            {
+                if (chHeightMap[c] > maxHeight)
+                    maxHeight = chHeightMap[c];
+            }
+
+            return maxHeight * word.Length;
         }
 
 

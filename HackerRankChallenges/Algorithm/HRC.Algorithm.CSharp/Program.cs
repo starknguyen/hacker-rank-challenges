@@ -24,8 +24,9 @@ namespace HRC.Algorithm.CSharp
                 //testPickingNumbersProblem();
                 //testDivisibleSumPairs();
                 //testBeautifulTriplets();
+                //testSimpleDesignPdfViewer();
 
-                testSimpleDesignPdfViewer();
+                testMigratoryBirds();
             }
             catch (Exception ex)
             {
@@ -33,6 +34,28 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testMigratoryBirds()
+        {
+            int arrCount = Convert.ToInt32(Console.ReadLine().Trim());
+            List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+            int result = migratoryBirds(arr);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the migratoryBirds function below.
+        static int migratoryBirds(List<int> arr)
+        {
+            var grouped = arr.GroupBy(i => i)
+                             .OrderByDescending(g => g.Count()).ToList();
+            var maxGroup = grouped.Max(g => g.Count());
+            var sortGroup = grouped.Where(g => g.Count() == maxGroup);
+
+            return sortGroup.Min(g => g.Key);
         }
 
 

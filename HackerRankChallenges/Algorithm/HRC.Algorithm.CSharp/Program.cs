@@ -25,8 +25,9 @@ namespace HRC.Algorithm.CSharp
                 //testDivisibleSumPairs();
                 //testBeautifulTriplets();
                 //testSimpleDesignPdfViewer();
+                //testMigratoryBirds();
 
-                testMigratoryBirds();
+                testUtopianTree();
             }
             catch (Exception ex)
             {
@@ -34,6 +35,39 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testUtopianTree()
+        {
+            int t = Convert.ToInt32(Console.ReadLine());
+
+            for (int tItr = 0; tItr < t; tItr++)
+            {
+                int n = Convert.ToInt32(Console.ReadLine());
+
+                int result = utopianTree(n);
+
+                Console.WriteLine(result);
+            }
+        }
+
+
+        // Complete the utopianTree function below.
+        static int utopianTree(int n)
+        {
+            if (n == 0)
+                return 1;
+            if (n % 2 == 0)
+            {
+                // Summer = +1
+                return 1 + utopianTree(n - 1);                
+            }
+            else
+            {
+                // Spring = x2
+                return 2 * utopianTree(n - 1);
+            }
         }
 
 

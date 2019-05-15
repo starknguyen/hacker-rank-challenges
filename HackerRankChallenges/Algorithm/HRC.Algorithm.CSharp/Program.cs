@@ -26,8 +26,9 @@ namespace HRC.Algorithm.CSharp
                 //testBeautifulTriplets();
                 //testSimpleDesignPdfViewer();
                 //testMigratoryBirds();
+                //testUtopianTree();
 
-                testUtopianTree();
+
             }
             catch (Exception ex)
             {
@@ -35,6 +36,16 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        static int pageCount(int n, int p)
+        {
+            /*
+             * Write your code here.
+             */
+
+            return new List<int>() { p / 2, (n / 2 - p / 2) }.Min();
         }
 
 

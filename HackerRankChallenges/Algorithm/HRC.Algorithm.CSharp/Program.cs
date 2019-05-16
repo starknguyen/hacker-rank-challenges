@@ -27,8 +27,8 @@ namespace HRC.Algorithm.CSharp
                 //testSimpleDesignPdfViewer();
                 //testMigratoryBirds();
                 //testUtopianTree();
-
-
+                //testMoneySpent();
+                testAngryProfessor();
             }
             catch (Exception ex)
             {
@@ -36,6 +36,72 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testAngryProfessor()
+        {
+            int t = Convert.ToInt32(Console.ReadLine());
+
+            for (int tItr = 0; tItr < t; tItr++)
+            {
+                string[] nk = Console.ReadLine().Split(' ');
+                int n = Convert.ToInt32(nk[0]);
+                int k = Convert.ToInt32(nk[1]);
+                int[] a = Array.ConvertAll(Console.ReadLine().Split(' '), aTemp => Convert.ToInt32(aTemp));
+                string result = angryProfessor(k, a);
+
+                Console.WriteLine(result);
+            }
+        }
+
+
+        private static void testMoneySpent()
+        {
+            string[] bnm = Console.ReadLine().Split(' ');
+            int b = Convert.ToInt32(bnm[0]);
+            int n = Convert.ToInt32(bnm[1]);
+            int m = Convert.ToInt32(bnm[2]);
+            int[] keyboards = Array.ConvertAll(Console.ReadLine().Split(' '), keyboardsTemp => Convert.ToInt32(keyboardsTemp));
+            int[] drives = Array.ConvertAll(Console.ReadLine().Split(' '), drivesTemp => Convert.ToInt32(drivesTemp));
+            /*
+             * The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+             */
+
+            int moneySpent = getMoneySpent(keyboards, drives, b);
+
+            Console.WriteLine(moneySpent);
+        }
+
+
+        // Complete the angryProfessor function below.
+        static string angryProfessor(int k, int[] a)
+        {
+            var students = a.ToList();
+            var numStudentsOnTime = students.Where(s => s <= 0).Count();
+            if (numStudentsOnTime < k)
+                return "YES";
+            else
+                return "NO";
+        }
+
+
+        static int getMoneySpent(int[] keyboards, int[] drives, int b)
+        {
+            /*
+             * Write your code here.
+             */
+            var keyboardList = keyboards.ToList();
+            keyboardList.Sort();
+            var driveList = drives.ToList();
+            driveList.Sort();
+
+            for (int i = 0; i < keyboardList.Count(); i++)
+            {
+
+            }
+
+            return 0;
         }
 
 

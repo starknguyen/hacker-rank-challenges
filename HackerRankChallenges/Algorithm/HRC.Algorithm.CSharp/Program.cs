@@ -56,6 +56,18 @@ namespace HRC.Algorithm.CSharp
         }
 
 
+        // Complete the angryProfessor function below.
+        static string angryProfessor(int k, int[] a)
+        {
+            var students = a.ToList();
+            var numStudentsOnTime = students.Where(s => s <= 0).Count();
+            if (numStudentsOnTime < k)
+                return "YES";
+            else
+                return "NO";
+        }
+
+
         private static void testMoneySpent()
         {
             string[] bnm = Console.ReadLine().Split(' ');
@@ -71,19 +83,7 @@ namespace HRC.Algorithm.CSharp
             int moneySpent = getMoneySpent(keyboards, drives, b);
 
             Console.WriteLine(moneySpent);
-        }
-
-
-        // Complete the angryProfessor function below.
-        static string angryProfessor(int k, int[] a)
-        {
-            var students = a.ToList();
-            var numStudentsOnTime = students.Where(s => s <= 0).Count();
-            if (numStudentsOnTime < k)
-                return "YES";
-            else
-                return "NO";
-        }
+        }   
 
 
         static int getMoneySpent(int[] keyboards, int[] drives, int b)
@@ -91,17 +91,17 @@ namespace HRC.Algorithm.CSharp
             /*
              * Write your code here.
              */
-            var keyboardList = keyboards.ToList();
-            keyboardList.Sort();
-            var driveList = drives.ToList();
-            driveList.Sort();
-
-            for (int i = 0; i < keyboardList.Count(); i++)
+            int max = -1;
+            for (int i = 0; i < keyboards.Length; i++)
             {
-
+                for (int j = 0; j < drives.Length; j++)
+                {
+                    if (keyboards[i] + drives[j] <= b && keyboards[i] + drives[j] > max)
+                        max = keyboards[i] + drives[j];
+                }
             }
 
-            return 0;
+            return max;
         }
 
 

@@ -28,7 +28,12 @@ namespace HRC.Algorithm.CSharp
                 //testMigratoryBirds();
                 //testUtopianTree();
                 //testMoneySpent();
-                testAngryProfessor();
+                //testAngryProfessor();
+
+                int n = Convert.ToInt32(Console.ReadLine());
+                int result = viralAdvertising(n);
+
+                Console.WriteLine(result);
             }
             catch (Exception ex)
             {
@@ -38,6 +43,20 @@ namespace HRC.Algorithm.CSharp
             Console.ReadKey();
         }
 
+
+        // Complete the viralAdvertising function below.
+        static int viralAdvertising(int n)
+        {
+            int initialNumPeople = 5;
+            int numLike = 0;
+            for (int i = 0; i < n; i++)
+            {
+                numLike += (int)Math.Floor(initialNumPeople / 2.0);
+                initialNumPeople = (int)Math.Floor((initialNumPeople / 2.0)) * 3;
+            }
+
+            return numLike;
+        }
 
         private static void testAngryProfessor()
         {

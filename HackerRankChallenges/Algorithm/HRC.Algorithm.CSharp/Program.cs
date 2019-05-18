@@ -29,11 +29,9 @@ namespace HRC.Algorithm.CSharp
                 //testUtopianTree();
                 //testMoneySpent();
                 //testAngryProfessor();
+                //testViralAdvertising();
 
-                int n = Convert.ToInt32(Console.ReadLine());
-                int result = viralAdvertising(n);
-
-                Console.WriteLine(result);
+                testBeautifulDays();
             }
             catch (Exception ex)
             {
@@ -41,6 +39,43 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testBeautifulDays()
+        {
+            string[] ijk = Console.ReadLine().Split(' ');
+            int i = Convert.ToInt32(ijk[0]);
+            int j = Convert.ToInt32(ijk[1]);
+            int k = Convert.ToInt32(ijk[2]);
+
+            int result = beautifulDays(i, j, k);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the beautifulDays function below.
+        static int beautifulDays(int i, int j, int k)
+        {
+            int count = 0;
+            for (int n = i; n <= j; n++)
+            {
+                int reversed = Int32.Parse(new String(n.ToString().Reverse().ToArray()));
+                if (Math.Abs(n - reversed) % k == 0)
+                    count++;
+            }
+
+            return count;
+        }
+
+
+        private static void testViralAdvertising()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int result = viralAdvertising(n);
+
+            Console.WriteLine(result);
         }
 
 

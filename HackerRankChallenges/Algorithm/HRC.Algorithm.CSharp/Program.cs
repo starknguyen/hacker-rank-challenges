@@ -30,8 +30,10 @@ namespace HRC.Algorithm.CSharp
                 //testMoneySpent();
                 //testAngryProfessor();
                 //testViralAdvertising();
+                //testBeautifulDays();
 
-                testBeautifulDays();
+                testPermutationEquation();
+
             }
             catch (Exception ex)
             {
@@ -39,6 +41,40 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testPermutationEquation()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] p = Array.ConvertAll(Console.ReadLine().Split(' '), pTemp => Convert.ToInt32(pTemp));
+            int[] result = permutationEquation(p);
+
+            Console.WriteLine(string.Join("\n", result));
+        }
+
+
+        // Complete the permutationEquation function below.
+        static int[] permutationEquation(int[] p)
+        {
+            Dictionary<int, int> p1 = new Dictionary<int, int>();
+            for (int i = 0; i < p.Length; i++)
+            {
+                p1.Add(p[i], i + 1);
+            }
+            Dictionary<int, int> p2 = new Dictionary<int, int>();
+            for (int i = 0; i < p1.Count; i++)
+            {
+                p2.Add(p[i], p1[i + 1]);
+            }
+
+            var permList = new List<int>();
+            for (int i = 0; i < p1.Count; i++)
+            {
+                permList.Add(p1[p2.ElementAt(i).Value]);
+            }
+
+            return permList.ToArray();
         }
 
 

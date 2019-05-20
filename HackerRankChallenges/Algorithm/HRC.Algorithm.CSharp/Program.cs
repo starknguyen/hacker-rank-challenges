@@ -30,8 +30,16 @@ namespace HRC.Algorithm.CSharp
                 //testMoneySpent();
                 //testAngryProfessor();
                 //testViralAdvertising();
+                //testBeautifulDays();
 
-                testBeautifulDays();
+                int t = Convert.ToInt32(Console.ReadLine());
+                for (int tItr = 0; tItr < t; tItr++)
+                {
+                    int n = Convert.ToInt32(Console.ReadLine());
+                    int result = findDigits(n);
+
+                    Console.WriteLine(result);
+                }
             }
             catch (Exception ex)
             {
@@ -39,6 +47,25 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        // Complete the findDigits function below.
+        static int findDigits(int n)
+        {
+            // Split n into digits (except 0-digit)
+            var digits = n.ToString().ToCharArray()
+                                     .Where(c => c != '0')
+                                     .Select(c => c.ToString())
+                                     .Select(c => Convert.ToInt32(c)).ToList();
+            int counter = 0;
+            for (int i = 0; i < digits.Count; i++)
+            {
+                if (n % digits[i] == 0)
+                    counter++;
+            }
+
+            return counter;
         }
 
 

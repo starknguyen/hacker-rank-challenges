@@ -31,15 +31,9 @@ namespace HRC.Algorithm.CSharp
                 //testAngryProfessor();
                 //testViralAdvertising();
                 //testBeautifulDays();
+                //testPermutationEquation();
 
-                int t = Convert.ToInt32(Console.ReadLine());
-                for (int tItr = 0; tItr < t; tItr++)
-                {
-                    int n = Convert.ToInt32(Console.ReadLine());
-                    int result = findDigits(n);
-
-                    Console.WriteLine(result);
-                }
+                testFindDigits();
             }
             catch (Exception ex)
             {
@@ -47,6 +41,19 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testFindDigits()
+        {
+            int t = Convert.ToInt32(Console.ReadLine());
+            for (int tItr = 0; tItr < t; tItr++)
+            {
+                int n = Convert.ToInt32(Console.ReadLine());
+                int result = findDigits(n);
+
+                Console.WriteLine(result);
+            }
         }
 
 
@@ -66,6 +73,40 @@ namespace HRC.Algorithm.CSharp
             }
 
             return counter;
+        }
+
+
+        private static void testPermutationEquation()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] p = Array.ConvertAll(Console.ReadLine().Split(' '), pTemp => Convert.ToInt32(pTemp));
+            int[] result = permutationEquation(p);
+
+            Console.WriteLine(string.Join("\n", result));
+        }
+
+
+        // Complete the permutationEquation function below.
+        static int[] permutationEquation(int[] p)
+        {
+            Dictionary<int, int> p1 = new Dictionary<int, int>();
+            for (int i = 0; i < p.Length; i++)
+            {
+                p1.Add(p[i], i + 1);
+            }
+            Dictionary<int, int> p2 = new Dictionary<int, int>();
+            for (int i = 0; i < p1.Count; i++)
+            {
+                p2.Add(p[i], p1[i + 1]);
+            }
+
+            var permList = new List<int>();
+            for (int i = 0; i < p1.Count; i++)
+            {
+                permList.Add(p1[p2.ElementAt(i).Value]);
+            }
+
+            return permList.ToArray();
         }
 
 

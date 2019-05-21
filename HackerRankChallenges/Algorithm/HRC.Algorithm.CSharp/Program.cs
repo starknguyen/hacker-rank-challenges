@@ -32,8 +32,9 @@ namespace HRC.Algorithm.CSharp
                 //testViralAdvertising();
                 //testBeautifulDays();
                 //testPermutationEquation();
+                //testFindDigits();
 
-                testFindDigits();
+                testRepeatedString();
             }
             catch (Exception ex)
             {
@@ -41,6 +42,32 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testRepeatedString()
+        {
+            string s = Console.ReadLine();
+            long n = Convert.ToInt64(Console.ReadLine());
+            long result = repeatedString(s, n);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the repeatedString function below.
+        static long repeatedString(string s, long n)
+        {
+            if (s.Contains("a") == false)
+                return 0;
+            var numberOfSubstring = n / s.Length;
+            var idxLastChar = n % s.Length;
+            var countCurrentStr = s.Where(c => c == 'a').Count();
+
+            if (idxLastChar == 0)
+                return countCurrentStr * numberOfSubstring;
+            else
+                return (countCurrentStr * numberOfSubstring) + s.Substring(0, (int)idxLastChar).Where(c => c == 'a').Count();           
         }
 
 

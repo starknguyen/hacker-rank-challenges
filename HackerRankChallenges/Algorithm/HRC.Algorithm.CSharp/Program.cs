@@ -33,8 +33,9 @@ namespace HRC.Algorithm.CSharp
                 //testBeautifulDays();
                 //testPermutationEquation();
                 //testFindDigits();
+                //testRepeatedString();
 
-                testRepeatedString();
+                testCloudJumpProblem();
             }
             catch (Exception ex)
             {
@@ -42,6 +43,34 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testCloudJumpProblem()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] c = Array.ConvertAll(Console.ReadLine().Split(' '), cTemp => Convert.ToInt32(cTemp));
+            int result = jumpingOnClouds(c);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the jumpingOnClouds function below.
+        static int jumpingOnClouds(int[] c)
+        {
+            int counter = -1;
+            for (int i = 0; i < c.Length; i++)
+            {
+                if (i < c.Length - 2 && c[i + 2] == 0)
+                {
+                    i++;
+                }
+
+                counter++;
+            }
+
+            return counter;
         }
 
 

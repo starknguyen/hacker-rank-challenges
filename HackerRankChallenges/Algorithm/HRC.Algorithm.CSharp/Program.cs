@@ -34,8 +34,9 @@ namespace HRC.Algorithm.CSharp
                 //testPermutationEquation();
                 //testFindDigits();
                 //testRepeatedString();
+                //testCloudJumpProblem();
 
-                testCloudJumpProblem();
+                testMinimumDistances();
             }
             catch (Exception ex)
             {
@@ -43,6 +44,35 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testMinimumDistances()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] a = Array.ConvertAll(Console.ReadLine().Split(' '), aTemp => Convert.ToInt32(aTemp));
+            int result = minimumDistances(a);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the minimumDistances function below.
+        static int minimumDistances(int[] a)
+        {
+            var aList = a.ToList();
+            var duplicates = aList.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+            if (duplicates.Count == 0)
+                return -1;
+            int minDist = a.Length;
+            for (int i = 0; i < duplicates.Count; i++)
+            {
+                var firstIdx = aList.IndexOf(duplicates[i]);
+                var secondIdx = aList.LastIndexOf(duplicates[i]);
+                minDist = (secondIdx - firstIdx) < minDist ? (secondIdx - firstIdx) : minDist;
+            }
+
+            return minDist;
         }
 
 

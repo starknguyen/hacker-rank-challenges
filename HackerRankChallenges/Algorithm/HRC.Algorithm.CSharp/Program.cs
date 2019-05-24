@@ -35,8 +35,9 @@ namespace HRC.Algorithm.CSharp
                 //testFindDigits();
                 //testRepeatedString();
                 //testCloudJumpProblem();
+                //testMinimumDistances();
 
-                testMinimumDistances();
+                testServiceLane();
             }
             catch (Exception ex)
             {
@@ -44,6 +45,43 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testServiceLane()
+        {
+            string[] nt = Console.ReadLine().Split(' ');
+
+            int n = Convert.ToInt32(nt[0]);
+            int t = Convert.ToInt32(nt[1]);
+            int[] width = Array.ConvertAll(Console.ReadLine().Split(' '), widthTemp => Convert.ToInt32(widthTemp));
+            int[][] cases = new int[t][];
+
+            for (int i = 0; i < t; i++)
+            {
+                cases[i] = Array.ConvertAll(Console.ReadLine().Split(' '), casesTemp => Convert.ToInt32(casesTemp));
+            }
+
+            int[] result = serviceLane(width, cases);
+
+            Console.WriteLine(string.Join("\n", result));
+        }
+
+
+        // Complete the serviceLane function below.
+        static int[] serviceLane(int[] width, int[][] cases)
+        {
+            List<int> retval = new List<int>();
+            
+            for (int i = 0; i < cases.Length; i++)
+            {
+                int j = 0;
+                int entry = cases[i][j];
+                int exit = cases[i][j + 1];
+                retval.Add(width.Skip(entry).Take(exit - entry + 1).Min());
+            }
+
+            return retval.ToArray();
         }
 
 

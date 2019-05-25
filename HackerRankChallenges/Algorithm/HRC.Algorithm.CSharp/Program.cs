@@ -36,8 +36,9 @@ namespace HRC.Algorithm.CSharp
                 //testRepeatedString();
                 //testCloudJumpProblem();
                 //testMinimumDistances();
+                //testServiceLane();
 
-                testServiceLane();
+                testKaprekarNumbers();
             }
             catch (Exception ex)
             {
@@ -45,6 +46,43 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testKaprekarNumbers()
+        {
+            int p = Convert.ToInt32(Console.ReadLine());
+            int q = Convert.ToInt32(Console.ReadLine());
+            kaprekarNumbers(p, q);
+        }
+
+
+        // Complete the kaprekarNumbers function below.
+        static void kaprekarNumbers(int p, int q)
+        {
+            List<ulong> kaprekarNumbers = new List<ulong>();
+
+            for (ulong i = (ulong)p; i <= (ulong)q; i++)
+            {
+                ulong val = (ulong)(i * i);
+
+                var rLength = i.ToString().Length;
+                var lLength = val.ToString().Length - rLength;
+                var first = val.ToString().Substring(0, lLength);
+                if (String.IsNullOrEmpty(first))
+                    first = "0";
+                var last = val.ToString().Substring(lLength);
+
+                if (UInt64.Parse(first) + UInt64.Parse(last) == i)
+                    kaprekarNumbers.Add(i);
+            }
+
+            if (kaprekarNumbers.Count() == 0)
+                Console.WriteLine("INVALID RANGE");
+            else
+            {
+                kaprekarNumbers.ForEach(kn => Console.Write(kn + " "));
+            }
         }
 
 

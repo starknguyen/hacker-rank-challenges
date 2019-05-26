@@ -37,8 +37,9 @@ namespace HRC.Algorithm.CSharp
                 //testCloudJumpProblem();
                 //testMinimumDistances();
                 //testServiceLane();
+                //testKaprekarNumbers();
 
-                testKaprekarNumbers();
+                testEncryption();
             }
             catch (Exception ex)
             {
@@ -46,6 +47,60 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testEncryption()
+        {
+            string s = Console.ReadLine();
+            string result = encryption(s);
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the encryption function below.
+        static string encryption(string s)
+        {
+            string input = s.Contains(' ') ? s.Remove(' ') : s;
+            int inputLength = input.Length;
+            int numRows = Convert.ToInt32(Math.Floor(Math.Sqrt(inputLength)));
+            int numCols = Convert.ToInt32(Math.Ceiling(Math.Sqrt(inputLength)));
+
+            if (numRows * numCols < inputLength)
+            {
+                numRows += 1;
+            }
+
+            for (int i = 0; i < (numRows * numCols) - inputLength; i++)
+            {
+                input = input + '\0';
+            }
+
+            char[][] encrypt = new char[numRows][];
+            int inputIdx = 0;
+            for (int i = 0; i < numRows; i++)
+            {
+                encrypt[i] = new char[numCols];
+                for (int j = 0; j < numCols; j++)
+                {                    
+                    encrypt[i][j] = input[inputIdx];
+                    inputIdx++;
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            List<string> encryptedStrList = new List<string>();
+            for (int i = 0; i < numCols; i++)
+            {
+                for (int j = 0; j < numRows; j++)
+                {
+                    sb.Append(encrypt[j][i]);
+                }
+                encryptedStrList.Add(sb.ToString().Trim('\0'));
+                sb.Clear();
+            }
+
+            return String.Join(" ", encryptedStrList);
         }
 
 

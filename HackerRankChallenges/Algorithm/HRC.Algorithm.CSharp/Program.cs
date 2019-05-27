@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,8 +39,8 @@ namespace HRC.Algorithm.CSharp
                 //testMinimumDistances();
                 //testServiceLane();
                 //testKaprekarNumbers();
-
-                testEncryption();
+                //testEncryption();
+                testExtraLongFactorials();
             }
             catch (Exception ex)
             {
@@ -47,6 +48,24 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testExtraLongFactorials()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(extraLongFactorials(n));
+        }
+
+
+        // Complete the extraLongFactorials function below.
+        static BigInteger extraLongFactorials(int n)
+        {
+            if (n == 0)
+                return 1;
+            if (n <= 2)
+                return n;
+            return n * extraLongFactorials(n - 1);
         }
 
 

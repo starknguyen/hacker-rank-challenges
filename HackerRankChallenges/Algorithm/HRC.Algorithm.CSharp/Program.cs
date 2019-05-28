@@ -40,7 +40,10 @@ namespace HRC.Algorithm.CSharp
                 //testServiceLane();
                 //testKaprekarNumbers();
                 //testEncryption();
-                testExtraLongFactorials();
+                //testExtraLongFactorials();
+
+                testBiggerIsGreater();
+
             }
             catch (Exception ex)
             {
@@ -48,6 +51,61 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testBiggerIsGreater()
+        {
+            int T = Convert.ToInt32(Console.ReadLine());
+
+            for (int TItr = 0; TItr < T; TItr++)
+            {
+                string w = Console.ReadLine();
+                string result = biggerIsGreater(w);
+                Console.WriteLine(result);
+            }
+        }
+
+
+        // Complete the biggerIsGreater function below.
+        static string biggerIsGreater(string w)
+        {
+            char[] arr = w.ToCharArray();
+
+            getNextGreaterPermutation(arr);
+
+            if (String.Join("", arr) == w)
+                return "no answer";
+
+            return String.Join("", arr);
+        }
+
+
+        private static void getNextGreaterPermutation(char[] arr)
+        {
+            int i = arr.Length - 1;
+            while (i > 0 && arr[i - 1] >= arr[i])
+                i--;
+            if (i <= 0)
+                return;
+
+            int j = arr.Length - 1;
+            while (arr[j] <= arr[i - 1])
+                j--;
+
+            char temp = arr[i - 1];
+            arr[i - 1] = arr[j];
+            arr[j] = temp;
+
+            j = arr.Length - 1;
+            while (i < j)
+            {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            };
         }
 
 

@@ -41,8 +41,10 @@ namespace HRC.Algorithm.CSharp
                 //testKaprekarNumbers();
                 //testEncryption();
                 //testExtraLongFactorials();
+                //testBiggerIsGreater();
 
-                testBiggerIsGreater();
+                //createTestCaseCavityMap(100);
+                testCavityMap();
 
             }
             catch (Exception ex)
@@ -51,6 +53,70 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testCavityMap()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string[] grid = new string[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                string gridItem = Console.ReadLine();
+                grid[i] = gridItem;
+            }
+
+            string[] result = cavityMap(grid);
+
+            Console.WriteLine(string.Join("\n", result));
+        }
+
+
+        private static void createTestCaseCavityMap(int size)
+        {
+            int[][] grid = new int[size][];
+
+            for (int i = 0; i < size; i++)
+            {               
+                grid[i] = new int[size];
+                for (int j = 0; j < size; j++)
+                {
+                    Random rnd = new Random();
+                    grid[i][j] = rnd.Next(1, 10);
+                    System.Threading.Thread.Sleep(10);
+                    Console.Write(grid[i][j]); 
+                }
+
+                Console.WriteLine();
+            }            
+        }
+
+
+        // Complete the cavityMap function below.
+        static string[] cavityMap(string[] grid)
+        {
+            for (int iRow = 1; iRow < grid.Length - 1; iRow++)
+            {
+                for (int iCol = 1; iCol < grid[iRow].Length - 1; iCol++)
+                {
+                    var item = grid[iRow][iCol];
+                    var adjacentTop = grid[iRow - 1][iCol];
+                    var adjacentBottom = grid[iRow + 1][iCol];
+                    var adjacentLeft = grid[iRow][iCol - 1];
+                    var adjacentRight = grid[iRow][iCol + 1];
+
+                    if (item > adjacentTop && item > adjacentBottom && item > adjacentLeft && item > adjacentRight)
+                    {
+                        // "String" is an immutable type thus we can't change char. at idx, so we need StringBuilder as a workaround
+                        StringBuilder sb = new StringBuilder(grid[iRow]);
+                        sb[iCol] = 'X';
+                        grid[iRow] = sb.ToString();
+                    }
+                }
+            }
+
+            return grid;
         }
 
 
@@ -65,7 +131,7 @@ namespace HRC.Algorithm.CSharp
                 Console.WriteLine(result);
             }
         }
-
+    
 
         // Complete the biggerIsGreater function below.
         static string biggerIsGreater(string w)

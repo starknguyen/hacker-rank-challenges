@@ -42,10 +42,10 @@ namespace HRC.Algorithm.CSharp
                 //testEncryption();
                 //testExtraLongFactorials();
                 //testBiggerIsGreater();
-
                 //createTestCaseCavityMap(100);
-                testCavityMap();
+                //testCavityMap();
 
+                testCountingValleys();
             }
             catch (Exception ex)
             {
@@ -53,6 +53,48 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testCountingValleys()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string s = Console.ReadLine();
+
+            int result = countingValleys(n, s);
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the countingValleys function below.
+        static int countingValleys(int n, string s)
+        {
+            // Sample test cases:
+            // 8
+            // UDDDUDUU
+            // 12
+            // DDUUDDUDUUUD
+
+            int level = 0;
+            bool isDown = false;
+            int count = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                level = (s[i] == 'U') ? level + 1 : level - 1;
+                if (level < 0)
+                    isDown = true;
+                else
+                {
+                    if (isDown)
+                    {
+                        count++;
+                        isDown = false;
+                    }
+                }
+            }
+
+            return count;
         }
 
 

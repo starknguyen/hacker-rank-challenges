@@ -44,8 +44,9 @@ namespace HRC.Algorithm.CSharp
                 //testBiggerIsGreater();
                 //createTestCaseCavityMap(100);
                 //testCavityMap();
+                //testCountingValleys();
 
-                testCountingValleys();
+                testAcmTeam();
             }
             catch (Exception ex)
             {
@@ -53,6 +54,60 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testAcmTeam()
+        {
+            string[] nm = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(nm[0]);
+            int m = Convert.ToInt32(nm[1]);
+            string[] topic = new string[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                string topicItem = Console.ReadLine();
+                topic[i] = topicItem;
+            }
+
+            int[] result = acmTeam(topic);
+
+            Console.WriteLine(string.Join("\n", result));
+        }
+
+
+        // Complete the acmTeam function below.
+        static int[] acmTeam(string[] topic)
+        {            
+            // Test case: expected output = [217, 1]
+            int maxTopicKnow = 0;
+            int teamFormCount = 0;
+            for (int i = 0; i < topic.Length - 1; i++)
+            {
+                for (int j = i + 1; j < topic.Length; j++)
+                {
+                    int countBit = 0;
+                    for (int k = 0; k < topic[j].Length; k++)
+                    {
+                       if (Convert.ToChar(topic[i][k] | topic[j][k]) == '1')
+                            countBit++;
+                    }
+
+                    if (countBit < maxTopicKnow)
+                        continue;
+                    else if (countBit > maxTopicKnow)
+                    {
+                        maxTopicKnow = countBit;
+                        teamFormCount = 1;
+                    }
+                    else
+                    {
+                        teamFormCount++;
+                    }
+                }
+            }
+
+            return new int[] { maxTopicKnow, teamFormCount };
         }
 
 

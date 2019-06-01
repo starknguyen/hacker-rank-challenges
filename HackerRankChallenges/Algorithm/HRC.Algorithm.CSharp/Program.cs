@@ -77,42 +77,24 @@ namespace HRC.Algorithm.CSharp
         // Complete the workbook function below.
         static int workbook(int n, int k, int[] arr)
         {
-            int pageCount = 0;
+            int pageCount = 1;
             int specialCount = 0;
-            int startPage = 1;
 
             for (int i = 0; i < n; i++)
             {
-                //int numPages = 0;                
-                int a = arr[i] / k;
-                if (arr[i] < k)
-                    pageCount += 1;
-                else
+                for (int problemIdx = 1; problemIdx <= arr[i]; problemIdx++)
                 {
-                    if (arr[i] % k == 0)
-                        pageCount += a;
-                    else
-                        pageCount += (a + arr[i] % k);
+                    if (problemIdx == pageCount)
+                        specialCount++;
+                    if (problemIdx % k == 0)
+                        pageCount++;
                 }
 
-
-                //if (Enumerable.Range(startPage, pageCount).Any(val => val >= 1 && val <= arr[i]))
-                var problems = Enumerable.Range(startPage, pageCount).Intersect(Enumerable.Range(1, arr[i]));
-                if (problems.Count() > 0)
-                {
-                    //specialCount++;
-                    //specialCount = Enumerable.Range(startPage, pageCount).Intersect(Enumerable.Range(1, arr[i])).Count();
-
-                }
-                else
-                {
-                    //continue;
-                }
-
-                startPage = pageCount + 1;
+                if (arr[i] % k != 0)
+                    pageCount++;
             }
 
-            return 0;
+            return specialCount;
         }
 
 

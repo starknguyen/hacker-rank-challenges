@@ -47,7 +47,10 @@ namespace HRC.Algorithm.CSharp
                 //testCountingValleys();
                 //testAcmTeam();
 
-                testVirusIndices();
+                // 20190531/NNG TODO: Solve later
+                //testVirusIndices();
+
+                testWorkbook();
             }
             catch (Exception ex)
             {
@@ -55,6 +58,61 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testWorkbook()
+        {
+            string[] nk = Console.ReadLine().Split(' ');
+            int n = Convert.ToInt32(nk[0]);
+            int k = Convert.ToInt32(nk[1]);
+
+            int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp));
+            int result = workbook(n, k, arr);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the workbook function below.
+        static int workbook(int n, int k, int[] arr)
+        {
+            int pageCount = 0;
+            int specialCount = 0;
+            int startPage = 1;
+
+            for (int i = 0; i < n; i++)
+            {
+                //int numPages = 0;                
+                int a = arr[i] / k;
+                if (arr[i] < k)
+                    pageCount += 1;
+                else
+                {
+                    if (arr[i] % k == 0)
+                        pageCount += a;
+                    else
+                        pageCount += (a + arr[i] % k);
+                }
+
+
+                //if (Enumerable.Range(startPage, pageCount).Any(val => val >= 1 && val <= arr[i]))
+                var problems = Enumerable.Range(startPage, pageCount).Intersect(Enumerable.Range(1, arr[i]));
+                if (problems.Count() > 0)
+                {
+                    //specialCount++;
+                    //specialCount = Enumerable.Range(startPage, pageCount).Intersect(Enumerable.Range(1, arr[i])).Count();
+
+                }
+                else
+                {
+                    //continue;
+                }
+
+                startPage = pageCount + 1;
+            }
+
+            return 0;
         }
 
 

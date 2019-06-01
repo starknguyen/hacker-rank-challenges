@@ -45,8 +45,9 @@ namespace HRC.Algorithm.CSharp
                 //createTestCaseCavityMap(100);
                 //testCavityMap();
                 //testCountingValleys();
+                //testAcmTeam();
 
-                testAcmTeam();
+                testVirusIndices();
             }
             catch (Exception ex)
             {
@@ -54,6 +55,73 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testVirusIndices()
+        {
+            int t = Convert.ToInt32(Console.ReadLine());
+
+            for (int tItr = 0; tItr < t; tItr++)
+            {
+                string[] pv = Console.ReadLine().Split(' ');
+                string p = pv[0];
+                string v = pv[1];
+
+                virusIndices(p, v);
+            }
+        }
+
+
+        /*
+        * Complete the virusIndices function below.
+        */
+        static void virusIndices(string p, string v)
+        {
+            /*
+             * Print the answer for this test case in a single line
+             */
+
+            string vLeastStrFirst = v.Substring(0, v.Length - 1);
+            string vLeastStrLast = v.Substring(1, v.Length - 1);
+
+            var indicesFirst = FindIndexes(p, vLeastStrFirst).Where(val => (p.Length - val) >= v.Length).ToArray();
+            var indicesLast = FindIndexes(p, vLeastStrLast).Select(val => val -= 1)
+                                                        .Where(val => (p.Length - val) >= v.Length)
+                                                        .ToArray();
+
+            var retvalList = indicesFirst.Concat(indicesLast).Distinct().Where(val => val >= 0).ToList();
+            retvalList.Sort();
+
+            if (retvalList.Count() == 0)
+            {
+                Console.WriteLine("No Match!");
+                return;
+            }
+
+            Console.WriteLine(String.Join(" ", retvalList));
+        }
+
+
+        public static IEnumerable<int> FindIndexes(string text, string query)
+        {
+            return Enumerable.Range(0, text.Length - query.Length)
+                .Where(i => query.Equals(text.Substring(i, query.Length)));
+        }
+
+
+        public static List<int> AllIndexesOf(string str, string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                throw new ArgumentException("the string to find may not be empty", "value");
+            List<int> indexes = new List<int>();
+            for (int index = 0; ; index += value.Length)
+            {
+                index = str.IndexOf(value, index);
+                if (index == -1)
+                    return indexes;
+                indexes.Add(index);
+            }
         }
 
 

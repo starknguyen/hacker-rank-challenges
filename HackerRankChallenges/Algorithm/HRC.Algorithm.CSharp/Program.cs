@@ -50,7 +50,9 @@ namespace HRC.Algorithm.CSharp
                 // 20190531/NNG TODO: Solve later
                 //testVirusIndices();
 
-                testWorkbook();
+                //testWorkbook();
+
+                testGridSearchPattern();
             }
             catch (Exception ex)
             {
@@ -58,6 +60,103 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testGridSearchPattern()
+        {
+            int t = Convert.ToInt32(Console.ReadLine());
+
+            for (int tItr = 0; tItr < t; tItr++)
+            {
+                string[] RC = Console.ReadLine().Split(' ');
+                int R = Convert.ToInt32(RC[0]);
+                int C = Convert.ToInt32(RC[1]);
+                string[] G = new string[R];
+
+                for (int i = 0; i < R; i++)
+                {
+                    string GItem = Console.ReadLine();
+                    G[i] = GItem;
+                }
+
+                string[] rc = Console.ReadLine().Split(' ');
+                int r = Convert.ToInt32(rc[0]);
+                int c = Convert.ToInt32(rc[1]);
+                string[] P = new string[r];
+
+                for (int i = 0; i < r; i++)
+                {
+                    string PItem = Console.ReadLine();
+                    P[i] = PItem;
+                }
+
+                string result = gridSearch(G, P);
+
+                Console.WriteLine(result);
+            }
+        }
+
+        // Complete the gridSearch function below.
+        static string gridSearchRegex(string[] G, string[] P)
+        {
+            // This implementation looks like a nice hack...
+            var combineStr = string.Join("", G.Select(g => g + " "));
+
+            var diff = G[0].Length - P[0].Length + 1;
+            var dist = ".{" + diff + "}";
+            var patternDist = string.Join(dist, P);
+
+            var isMatch = System.Text.RegularExpressions.Regex.IsMatch(combineStr, patternDist);
+
+            return isMatch ? "YES" : "NO";
+        }
+
+
+        // Complete the gridSearch function below.
+        static string gridSearch(string[] G, string[] P)
+        {
+            List<Tuple<string, int, int>> positions = new List<Tuple<string, int, int>>();
+            
+            for (int i = 0; i < P.Length; i++)
+            {
+                var strContains = G.Where(s => s.Contains(P[i])).ToList();
+                if (strContains.Count() == 0)
+                    continue;
+                // Get positions
+                for (int matchIdx = 0; matchIdx < strContains.Count(); matchIdx++)
+                {
+                    var rowIdx = G.ToList().IndexOf(strContains[matchIdx]);
+                    if (rowIdx == -1)
+                        continue;
+                    // What if multiple matches? diff. col. idx?
+                    var colIdx = AllIndexesOf(strContains[matchIdx], P[i]);
+                    //var colIdx = strContains[matchIdx].IndexOf(P[i]);
+                    colIdx.ToList().ForEach(c => positions.Add(new Tuple<string, int, int>(P[i], rowIdx, c)));
+                }
+            }
+
+            if (positions.Count() < P.Length)
+                return "NO";
+
+            // Group same columns
+            var groupPatterns = positions.GroupBy(tup => tup.Item3).ToList();
+
+            for (int i = 0; i < groupPatterns.Count(); i++)
+            {                
+                var currList = groupPatterns[i].ToList();
+                for (int j = 1; j < groupPatterns[i].ToList().Count(); j++)
+                {
+                    if (currList[j].Item2 - currList[j - 1].Item2 != 1)
+                        continue;
+                    if (String.Equals(currList[j].Item1, currList[j - 1].Item1, StringComparison.InvariantCultureIgnoreCase))
+                        continue;
+
+                    return "YES";
+                }
+            }
+            
+            return "NO";
         }
 
 

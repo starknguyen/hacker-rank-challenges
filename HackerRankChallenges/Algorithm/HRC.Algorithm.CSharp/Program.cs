@@ -62,6 +62,22 @@ namespace HRC.Algorithm.CSharp
             Console.ReadKey();
         }
 
+        
+        // Complete the chocolateFeast function below.
+        static int chocolateFeast(int n, int c, int m) 
+        {    
+            int wrapperCount = n / c;
+            int totalChocEat = wrapperCount;
+
+            while (m <= wrapperCount)
+            {
+                wrapperCount = wrapperCount - m;
+                wrapperCount++;
+                totalChocEat++;
+            }
+
+            return totalChocEat;
+        }
 
         private static void testGridSearchPattern()
         {

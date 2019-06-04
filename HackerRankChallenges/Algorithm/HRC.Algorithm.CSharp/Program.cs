@@ -53,7 +53,8 @@ namespace HRC.Algorithm.CSharp
                 //testWorkbook();
                 //testGridSearchPattern();
                 //testChocolateFeast();
-
+                
+                testStonesTrail();
             }
             catch (Exception ex)
             {
@@ -61,6 +62,50 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testStonesTrail()
+        {
+            int T = Convert.ToInt32(Console.ReadLine());
+
+            for (int TItr = 0; TItr < T; TItr++)
+            {
+                int n = Convert.ToInt32(Console.ReadLine());
+                int a = Convert.ToInt32(Console.ReadLine());
+                int b = Convert.ToInt32(Console.ReadLine());
+
+                int[] result = stones(n, a, b);
+
+                Console.WriteLine(string.Join(" ", result));
+            }
+        }
+
+
+        // Complete the stones function below.
+        static int[] stones(int n, int a, int b)
+        {
+            List<int> lastStones = new List<int>();
+            int max = Math.Max(a, b);
+            int min = Math.Min(a, b);
+            int upperBound = n * max - max;
+            int lowerBound = n * min - min;
+
+            if (upperBound == lowerBound)
+                return new int[] { lowerBound };
+
+            for (int i = lowerBound; i <= upperBound; i += (max - min))
+            {
+                lastStones.Add(i);
+            }
+
+            // Assuming a < b
+            //for (int i = (n * a - a); i <= (n * b - b); i += (b - a))
+            //{
+            //    lastStones.Add(i);
+            //}
+
+            return lastStones.ToArray();
         }
 
 

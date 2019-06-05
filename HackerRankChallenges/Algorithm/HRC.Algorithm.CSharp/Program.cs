@@ -52,9 +52,10 @@ namespace HRC.Algorithm.CSharp
 
                 //testWorkbook();
                 //testGridSearchPattern();
-                //testChocolateFeast();
-                
-                testStonesTrail();
+                //testChocolateFeast();                
+                //testStonesTrail();
+
+                testFairRations();
             }
             catch (Exception ex)
             {
@@ -62,6 +63,65 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testFairRations()
+        {
+            int N = Convert.ToInt32(Console.ReadLine());
+            int[] Breads = Array.ConvertAll(Console.ReadLine().Split(' '), BTemp => Convert.ToInt32(BTemp));
+            int result = fairRations(Breads);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the fairRations function below.
+        static int fairRations(int[] B)
+        {
+            int breadAdded = 0;
+            int totalBreads = 0;
+
+            for (int i = 0; i < B.Length; i++)
+            {
+                totalBreads += B[i];
+                if (totalBreads % 2 == 1)
+                    breadAdded += 2;
+            }
+
+            if (totalBreads % 2 == 0)
+                return breadAdded;
+            else
+                return -1;
+
+            // First approach
+            // If all are evens, no need to distribute
+            //if (B.Any(b => b % 2 != 0) == false)
+            //    return 0;
+
+            //var bList = B.ToList();
+            //bList.Sort();
+
+            //for (int i = 2; i < B.Length; i++)
+            //{
+            //    var behind = bList[i];
+            //    var middle = bList[i - 1];
+            //    var front = bList[i - 2];
+
+            //    // Middle is even, front and behind are odds
+            //    if (middle % 2 == 0 && front % 2 != 0 && behind % 2 != 0)
+            //    {
+            //        breadAdded += 4;
+            //    }
+            //    // All are odds
+            //    else if (middle % 2 != 0 && front % 2 != 0 && behind % 2 != 0)
+            //    {
+            //        breadAdded += 2;
+            //    }                
+            //}
+
+
+            return breadAdded;
         }
 
 

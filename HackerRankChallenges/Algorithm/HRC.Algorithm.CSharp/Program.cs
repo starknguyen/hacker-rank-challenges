@@ -54,8 +54,9 @@ namespace HRC.Algorithm.CSharp
                 //testGridSearchPattern();
                 //testChocolateFeast();                
                 //testStonesTrail();
+                //testFairRations();
 
-                testFairRations();
+                testReducedString();
             }
             catch (Exception ex)
             {
@@ -63,6 +64,44 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testReducedString()
+        {
+            string s = Console.ReadLine();
+            string result = superReducedString(s);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the superReducedString function below.
+        static string superReducedString(string s)
+        {
+            //var chars = s.Distinct().ToList();
+            string newStr = String.Empty;
+            for (int i = 0; i < s.Length; i++)
+            {
+                var c = s[i];
+                var countC = s.Count(ch => ch == c);
+                if (countC == 1)
+                    continue;
+                var remains = new char[s.Length];
+                if( countC % 2 == 0)
+                {
+                    remains = s.Where(ch => ch != c).ToArray();
+                }
+                else
+                {
+                    remains = s.Skip(s.IndexOf(c)).Where(ch => ch != c).ToArray();
+                }
+
+                newStr = (c + String.Join("", remains));
+                s = newStr;
+            }
+
+            return newStr;
         }
 
 

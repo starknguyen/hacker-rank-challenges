@@ -70,38 +70,28 @@ namespace HRC.Algorithm.CSharp
         private static void testReducedString()
         {
             string s = Console.ReadLine();
-            string result = superReducedString(s);
+            string result = superReducedString(s, 0);
 
             Console.WriteLine(result);
         }
 
 
         // Complete the superReducedString function below.
-        static string superReducedString(string s)
-        {
-            //var chars = s.Distinct().ToList();
-            string newStr = String.Empty;
-            for (int i = 0; i < s.Length; i++)
+        static string superReducedString(string s, int startIndex)
+        {           
+            if (s.Length == 0)
+                return "Empty String";
+            else if (s.Length == startIndex + 1)
+                return s;
+
+            if (s[startIndex] == s[startIndex + 1])
             {
-                var c = s[i];
-                var countC = s.Count(ch => ch == c);
-                if (countC == 1)
-                    continue;
-                var remains = new char[s.Length];
-                if( countC % 2 == 0)
-                {
-                    remains = s.Where(ch => ch != c).ToArray();
-                }
-                else
-                {
-                    remains = s.Skip(s.IndexOf(c)).Where(ch => ch != c).ToArray();
-                }
-
-                newStr = (c + String.Join("", remains));
-                s = newStr;
+                return superReducedString(s.Substring(0, startIndex) + s.Substring(startIndex + 2), --startIndex < 0 ? 0 : startIndex);
             }
-
-            return newStr;
+            else
+            {
+                return superReducedString(s, ++startIndex);
+            }
         }
 
 

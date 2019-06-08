@@ -55,8 +55,9 @@ namespace HRC.Algorithm.CSharp
                 //testChocolateFeast();                
                 //testStonesTrail();
                 //testFairRations();
+                //testReducedString();
 
-                testReducedString();
+                testAppendAndDelete();
             }
             catch (Exception ex)
             {
@@ -64,6 +65,39 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testAppendAndDelete()
+        {
+            string s = Console.ReadLine();
+            string t = Console.ReadLine();
+            int k = Convert.ToInt32(Console.ReadLine());
+
+            string result = appendAndDelete(s, t, k);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the appendAndDelete function below.
+        static string appendAndDelete(string s, string t, int k)
+        {
+            int i = 0;
+            while (i < s.Length && i < t.Length && s[i] == t[i])
+            {
+                i++;
+            }
+
+            var sDiff = s.Length - i;
+            var tDiff = t.Length - i;
+
+            if (s.Length + t.Length < k)
+                return "Yes";
+            if ((sDiff + tDiff) % 2 == (k % 2) && sDiff + tDiff <= k)
+                return "Yes";
+            else
+                return "No";
         }
 
 

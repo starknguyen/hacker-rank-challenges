@@ -56,8 +56,9 @@ namespace HRC.Algorithm.CSharp
                 //testStonesTrail();
                 //testFairRations();
                 //testReducedString();
+                //testAppendAndDelete();
+                testStrongPasswordCheck();
 
-                testAppendAndDelete();
             }
             catch (Exception ex)
             {
@@ -65,6 +66,42 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+        private static void testStrongPasswordCheck()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string password = Console.ReadLine();
+
+            int answer = minimumNumber(n, password);
+            Console.WriteLine(answer);
+        }
+
+
+        // Complete the minimumNumber function below.
+        // find the minimum number of characters one must add to make password strong
+        static int minimumNumber(int n, string password)
+        {
+            // Return the minimum number of characters to make the password strong
+            const string SPECIAL_CHARS = "!@#$%^&*()-+";
+            const ushort MIN_LENGTH = 6;
+
+            ushort addCharCount = 0;
+            bool hasDigits = password.Any(c => char.IsDigit(c));
+            bool hasLowercaseChars = password.Any(c => char.IsLower(c));
+            bool hasUppercaseChars = password.Any(c => char.IsUpper(c));
+            bool hasSpecialChars = password.Any(c => SPECIAL_CHARS.Contains(c));
+
+            if (!hasDigits)
+                addCharCount++;
+            if (!hasLowercaseChars)
+                addCharCount++;
+            if (!hasUppercaseChars)
+                addCharCount++;
+            if (!hasSpecialChars)
+                addCharCount++;
+
+            return Math.Max(MIN_LENGTH - n, addCharCount);
         }
 
 

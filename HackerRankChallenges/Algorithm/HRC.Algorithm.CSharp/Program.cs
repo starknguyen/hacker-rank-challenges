@@ -57,8 +57,8 @@ namespace HRC.Algorithm.CSharp
                 //testFairRations();
                 //testReducedString();
                 //testAppendAndDelete();
-                testStrongPasswordCheck();
-
+                //testStrongPasswordCheck();
+                testFunnyString();
             }
             catch (Exception ex)
             {
@@ -67,6 +67,35 @@ namespace HRC.Algorithm.CSharp
 
             Console.ReadKey();
         }
+
+
+        private static void testFunnyString()
+        {
+            int q = Convert.ToInt32(Console.ReadLine());
+            for (int qItr = 0; qItr < q; qItr++)
+            {
+                string s = Console.ReadLine();
+                string result = funnyString(s);
+
+                Console.WriteLine(result);
+            }
+        }
+
+
+        // Complete the funnyString function below.
+        static string funnyString(string s)
+        {
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                var absDiffForward = Math.Abs(s[i + 1] - s[i]);
+                var absDiffReverse = Math.Abs(s[s.Length - i - 1] - s[s.Length - i - 2]);
+                if (absDiffForward != absDiffReverse)
+                    return "Not Funny";
+            }
+
+            return "Funny";
+        }
+
 
         private static void testStrongPasswordCheck()
         {

@@ -58,7 +58,9 @@ namespace HRC.Algorithm.CSharp
                 //testReducedString();
                 //testAppendAndDelete();
                 //testStrongPasswordCheck();
-                testFunnyString();
+                //testFunnyString();
+
+                testCaesarCipher();
             }
             catch (Exception ex)
             {
@@ -66,6 +68,62 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testCaesarCipher()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string s = Console.ReadLine();
+            int k = Convert.ToInt32(Console.ReadLine());
+
+            string result = caesarCipher(s, k);
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the caesarCipher function below.
+        static string caesarCipher(string s, int k)
+        {
+            int upperA = 'A';
+            int lowerA = 'a';
+            StringBuilder encodedStr = new StringBuilder();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsLetter(s[i]) == false)
+                {
+                    encodedStr.Append(s[i]);
+                    continue;
+                }
+
+                var shiftedChar = upperA;
+                shiftedChar += (char.ToUpper(s[i]) - upperA + k + 26) % 26;
+                if (char.IsLower(s[i]))
+                {
+                    shiftedChar += lowerA - upperA;
+                }
+
+                encodedStr.Append((char)shiftedChar);
+            }
+
+            return encodedStr.ToString();
+        }
+
+
+        private static char Shift(char letter, int shiftAmount, int alphabetLetterCount)
+        {
+            int upperA = 'A';
+            int lowerA = 'a';
+
+            var result = upperA;
+            result += (char.ToUpper(letter) - upperA + shiftAmount + alphabetLetterCount) % alphabetLetterCount;
+            if (char.IsLower(letter))
+            {
+                result += lowerA - upperA;
+            }
+
+            return (char)result;
         }
 
 

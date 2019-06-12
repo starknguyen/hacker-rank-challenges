@@ -59,8 +59,9 @@ namespace HRC.Algorithm.CSharp
                 //testAppendAndDelete();
                 //testStrongPasswordCheck();
                 //testFunnyString();
+                //testCaesarCipher();
+                testMarsExploration();
 
-                testCaesarCipher();
             }
             catch (Exception ex)
             {
@@ -68,6 +69,40 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testMarsExploration()
+        {
+            string s = Console.ReadLine();
+            int result = marsExploration(s);
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the marsExploration function below.
+        static int marsExploration(string s)
+        {
+            int diffCount = 0;
+            int i = 3;
+            do
+            {
+                var prevStr = s.Substring(i - 3, 3);
+                if (String.Equals(prevStr, "SOS", StringComparison.InvariantCulture) == false)
+                {
+                    if (prevStr[0] != 'S')
+                        diffCount++;
+                    if (prevStr[1] != 'O')
+                        diffCount++;
+                    if (prevStr[2] != 'S')
+                        diffCount++;
+                }
+                i += 3;
+                if (i > s.Length)
+                    break;
+            } while (true);
+
+            return diffCount;
         }
 
 

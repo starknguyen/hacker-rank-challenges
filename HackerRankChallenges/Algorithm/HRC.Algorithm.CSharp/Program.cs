@@ -60,8 +60,8 @@ namespace HRC.Algorithm.CSharp
                 //testStrongPasswordCheck();
                 //testFunnyString();
                 //testCaesarCipher();
-                testMarsExploration();
-
+                //testMarsExploration();
+                testPangrams();
             }
             catch (Exception ex)
             {
@@ -69,6 +69,25 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testPangrams()
+        {
+            string s = Console.ReadLine();
+            string result = pangrams(s);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the pangrams function below.
+        static string pangrams(string s)
+        {
+            if (s.Replace(" ", "").ToLowerInvariant().Distinct().Count() == 26)
+                return "pangram";
+            else
+                return "not pangram";
         }
 
 

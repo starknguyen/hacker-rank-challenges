@@ -61,7 +61,9 @@ namespace HRC.Algorithm.CSharp
                 //testFunnyString();
                 //testCaesarCipher();
                 //testMarsExploration();
-                testPangrams();
+                //testPangrams();
+                testStringSubsequence();
+
             }
             catch (Exception ex)
             {
@@ -69,6 +71,36 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testStringSubsequence()
+        {
+            int q = Convert.ToInt32(Console.ReadLine());
+
+            for (int qItr = 0; qItr < q; qItr++)
+            {
+                string s = Console.ReadLine();
+                string result = hackerrankInString(s);
+                Console.WriteLine(result);
+            }
+        }
+
+
+        // Complete the hackerrankInString function below.
+        static string hackerrankInString(string s)
+        {
+            const string HACKER_RANK = "hackerrank";
+
+            int idxHackerRank = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (HACKER_RANK[idxHackerRank] == s[i])
+                    idxHackerRank++;
+                if (idxHackerRank == HACKER_RANK.Length)
+                    return "YES";
+            }
+            return "NO";
         }
 
 

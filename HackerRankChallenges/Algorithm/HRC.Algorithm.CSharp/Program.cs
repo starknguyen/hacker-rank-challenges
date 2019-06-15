@@ -62,8 +62,8 @@ namespace HRC.Algorithm.CSharp
                 //testCaesarCipher();
                 //testMarsExploration();
                 //testPangrams();
-                testStringSubsequence();
-
+                //testStringSubsequence();
+                testAnagramsInPalindrome();
             }
             catch (Exception ex)
             {
@@ -71,6 +71,32 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testAnagramsInPalindrome()
+        {
+            string s = Console.ReadLine();
+            string result = gameOfThrones(s);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the gameOfThrones function below.
+        static string gameOfThrones(string s)
+        {
+            int ext = 0;
+            var chars = s.Distinct().ToList();
+            for (int i = 0; i < s.Distinct().Count(); i++)
+            {
+                var count = s.Where(c => c == chars[i]).Count();
+                if (count % 2 == 0)
+                    continue;
+                if (ext++ > 1)
+                    return "NO";
+            }
+            return "YES";
         }
 
 

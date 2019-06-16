@@ -63,7 +63,8 @@ namespace HRC.Algorithm.CSharp
                 //testMarsExploration();
                 //testPangrams();
                 //testStringSubsequence();
-                testAnagramsInPalindrome();
+                //testAnagramsInPalindrome();
+                testLCPArrayMaxValue();
             }
             catch (Exception ex)
             {
@@ -71,6 +72,36 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testLCPArrayMaxValue()
+        {
+            string t = Console.ReadLine();
+            int result = maxValue(t);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the maxValue function below.
+        static int maxValue(string t)
+        {            
+            var query = from i in Enumerable.Range(0, t.Length)
+                        from j in Enumerable.Range(0, t.Length - i + 1)
+                        where j >= 1
+                        select t.Substring(i, j);
+            var subStrings = query.ToList();
+            var distinctSubs = subStrings.Distinct().ToList();
+
+            int max = subStrings[0].Length * subStrings.Where(sub => sub == subStrings[0]).Count();
+            for (int i = 1; i < distinctSubs.Count(); i++)
+            {
+                var currentCount = distinctSubs[i].Length * subStrings.Where(sub => sub == distinctSubs[i]).Count();
+                max = (currentCount > max) ? currentCount : max;
+            }
+
+            return max;
         }
 
 

@@ -64,7 +64,10 @@ namespace HRC.Algorithm.CSharp
                 //testPangrams();
                 //testStringSubsequence();
                 //testAnagramsInPalindrome();
-                testLCPArrayMaxValue();
+
+                //testLCPArrayMaxValue();
+
+                testTimeInWords();
             }
             catch (Exception ex)
             {
@@ -72,6 +75,85 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testTimeInWords()
+        {
+            int h = Convert.ToInt32(Console.ReadLine());
+            int m = Convert.ToInt32(Console.ReadLine());
+            string result = timeInWords(h, m);
+
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the timeInWords function below.
+        static string timeInWords(int h, int m)
+        {
+            List<string> numbersInWords = new List<string>()
+            {
+                "zero",
+                "one",
+                "two",
+                "three",
+                "four",
+                "five",
+                "six",
+                "seven",
+                "eight",
+                "nine",
+                "ten",
+                "eleven",
+                "twelve",
+                "thirteen",
+                "fourteen",
+                "fifteen",
+                "sixteen",
+                "seventeen",
+                "eighteen",
+                "nineteen",
+                "twenty",
+                "twenty one",
+                "twenty two",
+                "twenty three",
+                "twenty four",
+                "twenty five",
+                "twenty six",
+                "twenty seven",
+                "twenty eight",
+                "twenty nine"
+            };
+
+            // For real-world problem, these can be localized
+            const string QUARTER = "quarter";
+            const string HALF = "half";
+            const string PAST = "past";
+            const string TO = "to";            
+            const string OCLOCK = "o' clock";
+            string MINUTE = "minute";
+
+            if (m > 1)
+                MINUTE += "s";
+
+            if (m < 30)
+            {
+                if (m == 0)
+                    return $"{numbersInWords[h]} {OCLOCK}";
+                else if (m == 15)
+                    return $"{QUARTER} {PAST} {numbersInWords[h]}";
+                else
+                    return $"{numbersInWords[m]} {MINUTE} {PAST} {numbersInWords[h]}";
+            }
+            else if (m == 30)
+                return $"{HALF} {PAST} {numbersInWords[h]}";
+            else
+            {                
+                if (m == 45)
+                    return $"{QUARTER} {TO} {numbersInWords[h + 1]}";
+                else
+                    return $"{numbersInWords[60 - m]} {MINUTE} {TO} {numbersInWords[h + 1]}";
+            }                                                                            
         }
 
 

@@ -67,7 +67,8 @@ namespace HRC.Algorithm.CSharp
 
                 //testLCPArrayMaxValue();
 
-                testTimeInWords();
+                //testTimeInWords();
+                testGemstones();
             }
             catch (Exception ex)
             {
@@ -75,6 +76,34 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testGemstones()
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string[] arr = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                string arrItem = Console.ReadLine();
+                arr[i] = arrItem;
+            }
+
+            int result = gemstones(arr);
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the gemstones function below.
+        static int gemstones(string[] arr)
+        {
+            var dup = arr[0].Intersect(arr[1]);
+            for (int i = 1; i < arr.Length; i++)
+            {
+                dup = dup.Intersect(arr[i]);
+            }
+
+            return dup.Count();
         }
 
 

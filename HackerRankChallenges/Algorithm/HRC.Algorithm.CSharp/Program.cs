@@ -68,7 +68,8 @@ namespace HRC.Algorithm.CSharp
                 //testLCPArrayMaxValue();
 
                 //testTimeInWords();
-                testGemstones();
+                //testGemstones();
+                testCountStepReduceLetterToPalindrome();
             }
             catch (Exception ex)
             {
@@ -76,6 +77,32 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testCountStepReduceLetterToPalindrome()
+        {
+            int q = Convert.ToInt32(Console.ReadLine());
+            for (int qItr = 0; qItr < q; qItr++)
+            {
+                string s = Console.ReadLine();
+                int result = theLoveLetterMystery(s);
+                Console.WriteLine(result);
+            }
+        }
+
+
+        // Complete the theLoveLetterMystery function below.
+        static int theLoveLetterMystery(string s)
+        {
+            int reduceStep = 0;
+            for (int i = 0; i < s.Length / 2; i++)
+            {
+                if (s[i] == s[s.Length - i - 1])
+                    continue;
+                reduceStep += Math.Abs(s[s.Length - i - 1] - s[i]);
+            }
+            return reduceStep;
         }
 
 

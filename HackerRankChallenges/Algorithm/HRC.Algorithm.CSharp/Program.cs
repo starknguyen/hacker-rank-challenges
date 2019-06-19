@@ -69,7 +69,8 @@ namespace HRC.Algorithm.CSharp
 
                 //testTimeInWords();
                 //testGemstones();
-                testCountStepReduceLetterToPalindrome();
+                //testCountStepReduceLetterToPalindrome();
+                testCamelCase();
             }
             catch (Exception ex)
             {
@@ -77,6 +78,27 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testCamelCase()
+        {
+            string s = Console.ReadLine();
+            int result = camelcase(s);
+            Console.WriteLine(result);
+        }
+
+
+        // Complete the camelcase function below.
+        static int camelcase(string s)
+        {
+            int wordCount = 1;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsUpper(s[i]))
+                    wordCount++;
+            }
+            return wordCount;
         }
 
 

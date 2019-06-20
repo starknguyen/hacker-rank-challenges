@@ -70,7 +70,8 @@ namespace HRC.Algorithm.CSharp
                 //testTimeInWords();
                 //testGemstones();
                 //testCountStepReduceLetterToPalindrome();
-                testCamelCase();
+                //testCamelCase();
+                testAlternatingCharacters();
             }
             catch (Exception ex)
             {
@@ -78,6 +79,33 @@ namespace HRC.Algorithm.CSharp
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void testAlternatingCharacters()
+        {
+            int q = Convert.ToInt32(Console.ReadLine());
+            for (int qItr = 0; qItr < q; qItr++)
+            {
+                string s = Console.ReadLine();
+                int result = alternatingCharacters(s);
+
+                Console.WriteLine(result);
+            }
+        }
+
+
+        // Complete the alternatingCharacters function below.
+        static int alternatingCharacters(string s)
+        {
+            int changeCount = 0;
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                if (s[i + 1] == s[i])
+                    changeCount++;
+            }
+
+            return changeCount;
         }
 
 
